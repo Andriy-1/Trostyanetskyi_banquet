@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Банкетний зал Тростянецький</title>
+	<title>Тростянецький ✦ Банкетний зал</title>
 	<link
 		href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap"
 		rel="stylesheet">
@@ -106,11 +106,25 @@
 			width: 24px;
 			height: 1.5px;
 			background: #2a2118;
-			transition: all .3s
+			transition: all .3s;
+			transform-origin: center
+		}
+
+		.burger.open span:nth-child(1) {
+			transform: translateY(6.5px) rotate(45deg)
+		}
+
+		.burger.open span:nth-child(2) {
+			opacity: 0;
+			transform: scaleX(0)
+		}
+
+		.burger.open span:nth-child(3) {
+			transform: translateY(-6.5px) rotate(-45deg)
 		}
 
 		.mobile-menu {
-			display: none;
+			display: flex;
 			position: fixed;
 			inset: 0;
 			background: rgba(26, 18, 9, 0.97);
@@ -118,11 +132,17 @@
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
-			gap: 32px
+			gap: 32px;
+			transform: translateY(-100%);
+			opacity: 0;
+			transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+			pointer-events: none
 		}
 
 		.mobile-menu.open {
-			display: flex
+			transform: translateY(0);
+			opacity: 1;
+			pointer-events: all
 		}
 
 		.mobile-menu a {
@@ -529,6 +549,22 @@
 			gap: 12px
 		}
 
+		.menu-row-text {
+			width: 100%;
+			display: flex;
+			justify-content: space-between !important;
+		}
+
+		/* === ФОТО СТРАВИ: стилі для майбутніх зображень === */
+		.menu-row-img {
+			width: 128px;
+			height: 128px;
+			border-radius: 4px;
+			object-fit: cover;
+			flex-shrink: 0;
+			margin-right: 4px
+		}
+
 		.menu-row:last-child {
 			border-bottom: none
 		}
@@ -689,6 +725,11 @@
 			border-color: rgba(184, 150, 62, 0.6)
 		}
 
+		.form-input option {
+			background: #1a1209;
+			color: #f5edd8
+		}
+
 		.form-input::placeholder {
 			color: rgba(245, 237, 216, 0.2)
 		}
@@ -795,15 +836,19 @@
 			}
 
 			.menu-categories {
-				grid-template-columns: 1fr 1fr
+				grid-template-columns: 1fr
 			}
 
-			.menu-category:nth-child(odd) {
-				border-right: 0.5px solid #e8e0cc
+			.menu-category {
+				border-right: none !important
 			}
 
-			.menu-category:nth-child(even) {
-				border-right: none
+			.menu-category[style*='grid-column:span 2'] {
+				grid-column: span 1 !important
+			}
+
+			.menu-category[style*='grid-column:span 2'] .menu-items-list {
+				grid-template-columns: 1fr !important
 			}
 		}
 
@@ -838,9 +883,104 @@
 				border-right: none !important
 			}
 
+			.menu-category[style*="grid-column:span 2"] {
+				grid-column: span 1 !important
+			}
+
+			.menu-category[style*="grid-column:span 2"] .menu-items-list {
+				grid-template-columns: 1fr !important
+			}
+
 			.features {
 				grid-template-columns: 1fr
 			}
+
+			.menu-row {
+				flex-direction: column;
+				gap: 6px
+			}
+
+			.menu-row-right {
+				display: flex;
+				gap: 12px;
+				align-items: baseline
+			}
+		}
+
+		/* Text animations */
+		@keyframes fadeUp {
+			from {
+				opacity: 0;
+				transform: translateY(24px)
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0)
+			}
+		}
+
+		@keyframes fadeIn {
+
+			from {
+
+				opacity: 0
+			}
+
+			to {
+
+				opacity: 1
+			}
+
+		}
+
+		.anim-fadeup {
+
+			opacity: 0;
+			animation: fadeUp 0.7s ease forwards
+		}
+
+		.anim-delay-1 {
+
+			animation-delay: 0.15s
+		}
+
+		.anim-delay-2 {
+
+			animation-delay: 0.3s
+		}
+
+		.anim-delay-3 {
+
+			animation-delay: 0.45s
+		}
+
+		.anim-delay-4 {
+
+			animation-delay: 0.6s
+		}
+
+		.anim-delay-5 {
+
+			animation-delay: 0.75s
+		}
+
+		.anim-delay-6 {
+
+			animation-delay: 0.9s
+		}
+
+		.reveal {
+
+			opacity: 0;
+			transform: translateY(32px);
+			transition: opacity 0.6s ease, transform 0.6s ease
+		}
+
+		.reveal.visible {
+
+			opacity: 1;
+			transform: translateY(0)
 		}
 	</style>
 </head>
@@ -860,7 +1000,7 @@
 
 		<!-- NAV -->
 		<nav class="nav">
-			<a href="#" class="nav-logo">Тростянецький <span>✦</span></a>
+			<a href="#" class="nav-logo">Тростянецький <span>✦</span> Банкетний зал</a>
 			<ul class="nav-links">
 				<li><a href="#about">Про нас</a></li>
 				<li><a href="#events">Зал</a></li>
@@ -868,7 +1008,7 @@
 				<li><a href="#gallery">Галерея</a></li>
 				<li><a href="#contact" class="nav-cta">Забронювати</a></li>
 			</ul>
-			<button class="burger" onclick="openMobile()" aria-label="Меню">
+			<button class="burger" id="burger-btn" aria-label="Меню">
 				<span></span><span></span><span></span>
 			</button>
 		</nav>
@@ -878,16 +1018,17 @@
 			<div class="hero-bg"></div>
 			<div class="hero-overlay"></div>
 			<div class="hero-content">
-				<p class="hero-tag">Банкетний зал</p>
-				<h1>Тростяне<em>цький</em></h1>
-				<p class="hero-sub">Місце, де народжуються спогади</p>
-				<div class="hero-divider"></div>
-				<div class="hero-actions">
+				<p class="hero-tag anim-fadeup anim-delay-1">Банкетний зал</p>
+				<h1 class="anim-fadeup anim-delay-2">Тростяне<em>цький</em></h1>
+				<p class="hero-sub anim-fadeup anim-delay-3">Місце, де народжуються спогади</p>
+				<div class="hero-divider anim-fadeup anim-delay-3"></div>
+				<div class="hero-actions anim-fadeup anim-delay-4">
 					<a href="#contact" class="btn-primary">Забронювати зал</a>
 					<a href="#menu" class="btn-outline">Переглянути меню</a>
 				</div>
-				<div class="hero-stats">
-					<div class="hero-stat"><span class="hero-stat-num">150</span><span
+				<div class="hero-stats anim-fadeup anim-delay-5">
+					<div class="hero-stat"><span class="hero-stat-num"><span
+								style="font-size:0.45em;vertical-align:middle;margin-right:4px;letter-spacing:0.06em">до</span>150</span><span
 							class="hero-stat-label">Гостей</span></div>
 					<div class="hero-stat-sep"></div>
 					<div class="hero-stat"><span class="hero-stat-num">2</span><span class="hero-stat-label">Зали</span>
@@ -904,7 +1045,7 @@
 			<div class="about-text">
 				<p class="section-tag">Наша історія</p>
 				<h2 class="section-h2">Елегантний простір для <em>особливих моментів</em></h2>
-				<p class="section-body">Банкетний зал Тростянецький — це вишуканий простір у серці, де кожна
+				<p class="section-body">Банкетний зал Тростянецький — це вишуканий простір у серці Тростянця, де кожна
 					подія стає незабутньою. Мармурові сходи, кришталеві люстри та бездоганний сервіс створюють атмосферу
 					справжньої розкоші.</p>
 				<div class="features">
@@ -924,7 +1065,7 @@
 						<div class="feature-dot"></div><span>Фотозона</span>
 					</div>
 					<div class="feature-item">
-						<div class="feature-dot"></div><span>Барний стіл</span>
+						<div class="feature-dot"></div><span>Тераса</span>
 					</div>
 				</div>
 			</div>
@@ -973,6 +1114,19 @@
 						<div class="menu-category-title">На початок</div>
 					</div>
 					<div class="menu-items-list">
+						<!-- ===================================================
+             ЯК ДОДАТИ ФОТО СТРАВИ:
+             Вставте тег <img> одразу після відкриття <div class="menu-row">:
+             
+             <div class="menu-row">
+               <img class="menu-row-img" src="img/bruschetta.jpg" alt="Брускети">
+               <div>..назва і опис..</div>
+               ...
+             </div>
+             
+             Зображення: рекомендований розмір 128×128px або квадрат.
+             Якщо фото немає — просто не додавайте тег <img>.
+        =================================================== -->
 						<div class="menu-row">
 							<div>
 								<div class="menu-row-name">Брускети з хамоном та карамелізованою грушею</div>
@@ -1531,7 +1685,8 @@
 				<div class="contact-detail">
 					<div>
 						<div class="contact-item-label">Адреса</div>
-						<div class="contact-item-value">с. Угринів, Івано-Франківська область</div>
+						<div class="contact-item-value">Вул. Галицька, 42, с. Угринів,<br>Івано-Франківська область
+						</div>
 					</div>
 					<div>
 						<div class="contact-item-label">Телефон</div>
@@ -1539,7 +1694,7 @@
 					</div>
 					<div>
 						<div class="contact-item-label">Час роботи</div>
-						<div class="contact-item-value">Пн–Нд: 10:00 – 22:00</div>
+						<div class="contact-item-value">Вт–Нд: 10:00 – 22:00</div>
 					</div>
 					<div>
 						<div class="contact-item-label">Instagram</div>
@@ -1552,18 +1707,18 @@
 				<p
 					style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(245,237,216,0.35);margin-bottom:24px">
 					Залишити заявку</p>
-				<div class="contact-form">
+				<form class="contact-form" id="booking-form" onsubmit="return false">
 					<div>
-						<div class="form-group-label">Ваше ім'я</div><input type="text" class="form-input"
-							placeholder="Марія Іваненко">
+						<div class="form-group-label">Ваше ім'я</div><input type="text" id="f-name" class="form-input"
+							placeholder="Марія Іваненко" autocomplete="name">
 					</div>
 					<div>
-						<div class="form-group-label">Телефон</div><input type="tel" class="form-input"
-							placeholder="+38 (0__) ___-__-__">
+						<div class="form-group-label">Телефон</div><input type="tel" id="f-phone" class="form-input"
+							placeholder="+38 (050) 000-00-00" autocomplete="tel">
 					</div>
 					<div>
 						<div class="form-group-label">Тип події</div>
-						<select class="form-input" style="cursor:pointer">
+						<select id="f-event" class="form-input" style="cursor:pointer;">
 							<option value="">Оберіть тип події</option>
 							<option>Весілля</option>
 							<option>День народження</option>
@@ -1572,11 +1727,12 @@
 						</select>
 					</div>
 					<div>
-						<div class="form-group-label">Кількість гостей</div><input type="number" class="form-input"
-							placeholder="50">
+						<div class="form-group-label">Кількість гостей</div><input type="number" id="f-guests"
+							class="form-input" placeholder="50" min="1" max="500">
 					</div>
-					<button class="form-submit">Надіслати заявку →</button>
-				</div>
+					<div id="form-msg" style="font-size:13px;margin-top:4px;display:none"></div>
+					<button type="submit" class="form-submit">Надіслати заявку →</button>
+				</form>
 			</div>
 		</section>
 
@@ -1589,14 +1745,102 @@
 	</div>
 
 	<script>
-		function openMobile() { document.getElementById('mobile-menu').classList.add('open'); document.body.style.overflow = 'hidden' }
-		function closeMobile() { document.getElementById('mobile-menu').classList.remove('open'); document.body.style.overflow = '' }
-		document.querySelectorAll('a[href^="#"]').forEach(a => {
-			a.addEventListener('click', function (e) {
-				const t = document.querySelector(this.getAttribute('href'));
-				if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }) }
-			})
-		})
+		document.addEventListener('DOMContentLoaded', function () {
+			var burger = document.getElementById('burger-btn');
+			var mobileMenu = document.getElementById('mobile-menu');
+
+			function openMobile() {
+				mobileMenu.classList.add('open');
+				burger.classList.add('open');
+				document.body.style.overflow = 'hidden';
+			}
+			function closeMobile() {
+				mobileMenu.classList.remove('open');
+				burger.classList.remove('open');
+				document.body.style.overflow = '';
+			}
+
+			burger.addEventListener('click', function () {
+				if (mobileMenu.classList.contains('open')) {
+					closeMobile();
+				} else {
+					openMobile();
+				}
+			});
+
+			// Close mobile menu on link click
+			mobileMenu.querySelectorAll('a').forEach(function (a) {
+				a.addEventListener('click', closeMobile);
+			});
+
+			// Smooth scroll
+			document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+				a.addEventListener('click', function (e) {
+					var t = document.querySelector(this.getAttribute('href'));
+					if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+				});
+			});
+
+			// Scroll reveal
+			if ('IntersectionObserver' in window) {
+				var ro = new IntersectionObserver(function (entries) {
+					entries.forEach(function (e) {
+						if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+					});
+				}, { threshold: 0.1 });
+				document.querySelectorAll('.section-tag,.section-h2,.section-body,.features,.events-grid,.menu-categories,.gallery-grid,.contact-info,.contact-form,.about-img').forEach(function (el) {
+					el.classList.add('reveal');
+					ro.observe(el);
+				});
+			}
+
+			// Form validation
+			var form = document.getElementById('booking-form');
+			if (form) {
+				var nameInput = document.getElementById('f-name');
+				var phoneInput = document.getElementById('f-phone');
+				var guestsInput = document.getElementById('f-guests');
+
+				nameInput.addEventListener('input', function () {
+					this.value = this.value.replace(/[0-9!@#$%^&*()_+=\[\]{}|<>]/g, '');
+				});
+
+				phoneInput.addEventListener('input', function () {
+					var val = this.value.replace(/[^\d+\-\s()]/g, '');
+					this.value = val;
+				});
+
+				guestsInput.addEventListener('input', function () {
+					this.value = this.value.replace(/[^0-9]/g, '');
+				});
+
+				form.addEventListener('submit', function (e) {
+					e.preventDefault();
+					var errors = [];
+					var name = nameInput.value.trim();
+					var phone = phoneInput.value.trim();
+					var guests = guestsInput.value.trim();
+					var eventType = document.getElementById('f-event').value;
+
+					if (name.length < 2) errors.push(`Введіть коректне ім'я`);
+					if (phone.replace(/[^0-9]/g, '').length < 10) errors.push('Введіть коректний номер телефону');
+					if (!eventType) errors.push('Оберіть тип події');
+					if (!guests || parseInt(guests) < 1) errors.push('Вкажіть кількість гостей');
+
+					var msgEl = document.getElementById('form-msg');
+					if (errors.length > 0) {
+						msgEl.textContent = errors.join(' · ');
+						msgEl.style.color = '#e07070';
+						msgEl.style.display = 'block';
+					} else {
+						msgEl.textContent = `✓ Заявку прийнято! Ми зв'яжемось з вами найближчим часом.`;
+						msgEl.style.color = '#d4b06a';
+						msgEl.style.display = 'block';
+						form.reset();
+					}
+				});
+			}
+		});
 	</script>
 </body>
 
