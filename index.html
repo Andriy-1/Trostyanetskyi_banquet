@@ -982,6 +982,122 @@
 			opacity: 1;
 			transform: translateY(0)
 		}
+
+		/* Menu type switcher */
+		.menu-type-switcher {
+			display: flex;
+			gap: 0;
+			margin-bottom: 36px;
+			margin-top: 32px;
+			border: 0.5px solid #d4c8a8;
+			border-radius: 4px;
+			overflow: hidden;
+			width: fit-content
+		}
+
+		.menu-type-btn {
+			padding: 11px 28px;
+			font-size: 12px;
+			letter-spacing: 0.14em;
+			text-transform: uppercase;
+			font-family: 'Jost', sans-serif;
+			font-weight: 400;
+			color: #9a8460;
+			background: transparent;
+			border: none;
+			border-right: 0.5px solid #d4c8a8;
+			cursor: pointer;
+			transition: all .25s;
+			white-space: nowrap
+		}
+
+		.menu-type-btn:last-child {
+			border-right: none
+		}
+
+		.menu-type-btn.active {
+			background: #2a2118;
+			color: #f5edd8
+		}
+
+		.menu-type-btn:not(.active):hover {
+			background: #f2ede3;
+			color: #5a4a30
+		}
+
+		/* Menu type panels */
+		.menu-panel {
+			display: none
+		}
+
+		.menu-panel.active {
+			display: block
+		}
+
+		/* Coming soon panel */
+		.menu-coming-soon {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			padding: 72px 40px;
+			text-align: center;
+			border: 0.5px solid #e8e0cc;
+			background: #faf8f4;
+			border-radius: 4px
+		}
+
+		.menu-coming-icon {
+			font-size: 48px;
+			margin-bottom: 20px
+		}
+
+		.menu-coming-title {
+			font-family: 'Cormorant Garamond', serif;
+			font-size: 36px;
+			font-weight: 300;
+			color: #2a2118;
+			margin-bottom: 12px
+		}
+
+		.menu-coming-title em {
+			font-style: italic;
+			color: #8b6914
+		}
+
+		.menu-coming-desc {
+			font-size: 14px;
+			color: #9a8460;
+			line-height: 1.8;
+			max-width: 420px
+		}
+
+		.menu-coming-badge {
+			display: inline-block;
+			margin-top: 24px;
+			padding: 8px 24px;
+			border: 0.5px solid #d4c8a8;
+			border-radius: 2px;
+			font-size: 11px;
+			letter-spacing: 0.18em;
+			text-transform: uppercase;
+			color: #b8963e;
+			font-family: 'Jost', sans-serif
+		}
+
+		@media(max-width: 600px) {
+			.menu-type-switcher {
+				width: 100%;
+				flex-wrap: wrap
+			}
+
+			.menu-type-btn {
+				flex: 1;
+				padding: 10px 8px;
+				font-size: 10px;
+				text-align: center
+			}
+		}
 	</style>
 </head>
 
@@ -1106,552 +1222,611 @@
 			<p class="section-tag">Гастрономія</p>
 			<h2 class="section-h2">Наше <em>меню</em></h2>
 
-			<div class="menu-categories">
+			<!-- Switcher -->
+			<div class="menu-type-switcher">
+				<button class="menu-type-btn active" onclick="switchMenu('restaurant', this)">Ресторанне</button>
+				<button class="menu-type-btn" onclick="switchMenu('banquet', this)">Банкетне</button>
+				<button class="menu-type-btn" onclick="switchMenu('corporate', this)">На компанію</button>
+			</div>
 
-				<!-- На початок -->
-				<div class="menu-category">
-					<div class="menu-category-header"><span class="menu-category-icon">🥂</span>
-						<div class="menu-category-title">На початок</div>
-					</div>
-					<div class="menu-items-list">
-						<!-- ===================================================
+			<!-- Panel: Ресторанне (активне за замовчуванням) -->
+			<div class="menu-panel active" id="menu-panel-restaurant">
+				<div class="menu-categories">
+
+					<!-- На початок -->
+					<div class="menu-category">
+						<div class="menu-category-header"><span class="menu-category-icon">🥂</span>
+							<div class="menu-category-title">На початок</div>
+						</div>
+						<div class="menu-items-list">
+							<!-- ===================================================
              ЯК ДОДАТИ ФОТО СТРАВИ:
              Вставте тег <img> одразу після відкриття <div class="menu-row">:
-             
-             <div class="menu-row">
-               <img class="menu-row-img" src="img/bruschetta.jpg" alt="Брускети">
-               <div>..назва і опис..</div>
-               ...
-             </div>
-             
+			
+			Приклад:
+			<div class="menu-row"><img class="menu-row-img" src="./test_photo_strava.jpg"
+									alt="Печінковий паштет із журавлиним конфі">
+								<div class="menu-row-text">
+									<div>
+										<div class="menu-row-name">Печінковий паштет із журавлиним конфі</div>
+										<div class="menu-row-desc">на основі курячої печінки, з грінками та маслом із
+											зеленню
+										</div>
+									</div>
+									<div class="menu-row-right">
+										<div class="menu-row-price">118 ₴</div>
+										<div class="menu-row-weight">140 г</div>
+									</div>
+								</div>
+							</div>
              Зображення: рекомендований розмір 128×128px або квадрат.
              Якщо фото немає — просто не додавайте тег <img>.
         =================================================== -->
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Брускети з хамоном та карамелізованою грушею</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">120 ₴</div>
-								<div class="menu-row-weight">120 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Роли з лососем</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">170 ₴</div>
-								<div class="menu-row-weight">120 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Печінковий паштет із журавлиним конфі</div>
-								<div class="menu-row-desc">на основі курячої печінки, з грінками та маслом із зеленню
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Брускети з хамоном та карамелізованою грушею</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">120 ₴</div>
+									<div class="menu-row-weight">120 г</div>
 								</div>
 							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">118 ₴</div>
-								<div class="menu-row-weight">140 г</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Роли з лососем</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">170 ₴</div>
+									<div class="menu-row-weight">120 г</div>
+								</div>
 							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Оселедець з картопляними чіпсами</div>
-								<div class="menu-row-desc">з маринованими шампіньонами, цибулею порей, синьою цибулею та
-									свіжим перцем</div>
+							<div class="menu-row"><img class="menu-row-img" src="./test_photo_strava.jpg"
+									alt="Печінковий паштет із журавлиним конфі">
+								<div class="menu-row-text">
+									<div>
+										<div class="menu-row-name">Печінковий паштет із журавлиним конфі</div>
+										<div class="menu-row-desc">на основі курячої печінки, з грінками та маслом із
+											зеленню
+										</div>
+									</div>
+									<div class="menu-row-right">
+										<div class="menu-row-price">118 ₴</div>
+										<div class="menu-row-weight">140 г</div>
+									</div>
+								</div>
 							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">105 ₴</div>
-								<div class="menu-row-weight">120 г</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Оселедець з картопляними чіпсами</div>
+									<div class="menu-row-desc">з маринованими шампіньонами, цибулею порей, синьою
+										цибулею та
+										свіжим перцем</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">105 ₴</div>
+									<div class="menu-row-weight">120 г</div>
+								</div>
 							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Курка з соусом Тар-Тар</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Курка з соусом Тар-Тар</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">105 ₴</div>
+									<div class="menu-row-weight">110 г</div>
+								</div>
 							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">105 ₴</div>
-								<div class="menu-row-weight">110 г</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Сало по-козацьки</div>
+									<div class="menu-row-desc">перемелене та зі спеціями, на грінках</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">48 ₴</div>
+									<div class="menu-row-weight">100 г</div>
+								</div>
 							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Сало по-козацьки</div>
-								<div class="menu-row-desc">перемелене та зі спеціями, на грінках</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Сирне плато</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">225 ₴</div>
+									<div class="menu-row-weight">100 г</div>
+								</div>
 							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">48 ₴</div>
-								<div class="menu-row-weight">100 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Сирне плато</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">225 ₴</div>
-								<div class="menu-row-weight">100 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">М'ясна тарілка</div>
-								<div class="menu-row-desc">власного виробництва</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">140 ₴</div>
-								<div class="menu-row-weight">100 г</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">М'ясна тарілка</div>
+									<div class="menu-row-desc">власного виробництва</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">140 ₴</div>
+									<div class="menu-row-weight">100 г</div>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 
-				<!-- Салати -->
-				<div class="menu-category">
-					<div class="menu-category-header"><span class="menu-category-icon">🥗</span>
-						<div class="menu-category-title">Салати</div>
+					<!-- Салати -->
+					<div class="menu-category">
+						<div class="menu-category-header"><span class="menu-category-icon">🥗</span>
+							<div class="menu-category-title">Салати</div>
+						</div>
+						<div class="menu-items-list">
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Цезар</div>
+									<div class="menu-row-desc">айсберг, куряче філе, бекон, гросіні, помідор черрі,
+										пармезан, яйце перепелине, соус цезар</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">236 ₴</div>
+									<div class="menu-row-weight">250 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Реприза</div>
+									<div class="menu-row-desc">айсберг, білі гриби мариновані, яйце перепелине,
+										телятина,
+										салатна заправка</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">280 ₴</div>
+									<div class="menu-row-weight">250 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Тростянецький</div>
+									<div class="menu-row-desc">мікс салатів, філе курки, шампіньони, авокадо, помідор,
+										грінки запечені, соус цезар</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">240 ₴</div>
+									<div class="menu-row-weight">250 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Пані Наталі</div>
+									<div class="menu-row-desc">печінка курки на грилі, баклажан, кабачок, помідор свіжий
+										та
+										в'ялений, порей, мікрогрін</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">230 ₴</div>
+									<div class="menu-row-weight">250 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Настрій</div>
+									<div class="menu-row-desc">мікс салату, лосось у кунжуті, авокадо, сирні кульки з
+										горіхом, соус італійський</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">295 ₴</div>
+									<div class="menu-row-weight">250 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Сонет</div>
+									<div class="menu-row-desc">мікс салату, огірок, перець болгарський, шампіньони,
+										пекінська капуста, крем сир</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">210 ₴</div>
+									<div class="menu-row-weight">250 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Ренуаж</div>
+									<div class="menu-row-desc">рукола, печінка куряча запечена, перець болгарський
+										запечений, яйце перепелине, грудинка копчена</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">229 ₴</div>
+									<div class="menu-row-weight">250 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Смарагдовий</div>
+									<div class="menu-row-desc">зелень салатна, язик телячий, перець болгарський, твердий
+										сир, яйце перепелине, синій виноград, ядро соняшнику, йогуртовий соус</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">286 ₴</div>
+									<div class="menu-row-weight">250 г</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="menu-items-list">
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Цезар</div>
-								<div class="menu-row-desc">айсберг, куряче філе, бекон, гросіні, помідор черрі,
-									пармезан, яйце перепелине, соус цезар</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">236 ₴</div>
-								<div class="menu-row-weight">250 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Реприза</div>
-								<div class="menu-row-desc">айсберг, білі гриби мариновані, яйце перепелине, телятина,
-									салатна заправка</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">280 ₴</div>
-								<div class="menu-row-weight">250 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Тростянецький</div>
-								<div class="menu-row-desc">мікс салатів, філе курки, шампіньони, авокадо, помідор,
-									грінки запечені, соус цезар</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">240 ₴</div>
-								<div class="menu-row-weight">250 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Пані Наталі</div>
-								<div class="menu-row-desc">печінка курки на грилі, баклажан, кабачок, помідор свіжий та
-									в'ялений, порей, мікрогрін</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">230 ₴</div>
-								<div class="menu-row-weight">250 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Настрій</div>
-								<div class="menu-row-desc">мікс салату, лосось у кунжуті, авокадо, сирні кульки з
-									горіхом, соус італійський</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">295 ₴</div>
-								<div class="menu-row-weight">250 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Сонет</div>
-								<div class="menu-row-desc">мікс салату, огірок, перець болгарський, шампіньони,
-									пекінська капуста, крем сир</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">210 ₴</div>
-								<div class="menu-row-weight">250 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Ренуаж</div>
-								<div class="menu-row-desc">рукола, печінка куряча запечена, перець болгарський
-									запечений, яйце перепелине, грудинка копчена</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">229 ₴</div>
-								<div class="menu-row-weight">250 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Смарагдовий</div>
-								<div class="menu-row-desc">зелень салатна, язик телячий, перець болгарський, твердий
-									сир, яйце перепелине, синій виноград, ядро соняшнику, йогуртовий соус</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">286 ₴</div>
-								<div class="menu-row-weight">250 г</div>
-							</div>
-						</div>
-					</div>
-				</div>
 
-				<!-- Перші страви -->
-				<div class="menu-category">
-					<div class="menu-category-header"><span class="menu-category-icon">🍲</span>
-						<div class="menu-category-title">Перші страви</div>
+					<!-- Перші страви -->
+					<div class="menu-category">
+						<div class="menu-category-header"><span class="menu-category-icon">🍲</span>
+							<div class="menu-category-title">Перші страви</div>
+						</div>
+						<div class="menu-items-list">
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Бульйон курячий</div>
+									<div class="menu-row-desc">традиційний, з курячим м'ясом та домашньою лапшою</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">120 ₴</div>
+									<div class="menu-row-weight">250 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Борщ український</div>
+									<div class="menu-row-desc">на свинних реберцях, з грінками з салом та цибулею</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">150 ₴</div>
+									<div class="menu-row-weight">280 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Юшка з білих грибів</div>
+									<div class="menu-row-desc">бульйон на основі білих грибів, з грибними вушками</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">160 ₴</div>
+									<div class="menu-row-weight">250 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Крем-суп сирний</div>
+									<div class="menu-row-desc">на основі плавленого вершкового сиру з мисливськими
+										ковбасками, подається з гросіні</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">145 ₴</div>
+									<div class="menu-row-weight">250 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Солянка м'ясна</div>
+									<div class="menu-row-desc">на м'ясному бульйоні, ковбаски, свинина, бекон, лимон та
+										оливки</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">165 ₴</div>
+									<div class="menu-row-weight">300 г</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="menu-items-list">
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Бульйон курячий</div>
-								<div class="menu-row-desc">традиційний, з курячим м'ясом та домашньою лапшою</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">120 ₴</div>
-								<div class="menu-row-weight">250 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Борщ український</div>
-								<div class="menu-row-desc">на свинних реберцях, з грінками з салом та цибулею</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">150 ₴</div>
-								<div class="menu-row-weight">280 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Юшка з білих грибів</div>
-								<div class="menu-row-desc">бульйон на основі білих грибів, з грибними вушками</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">160 ₴</div>
-								<div class="menu-row-weight">250 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Крем-суп сирний</div>
-								<div class="menu-row-desc">на основі плавленого вершкового сиру з мисливськими
-									ковбасками, подається з гросіні</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">145 ₴</div>
-								<div class="menu-row-weight">250 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Солянка м'ясна</div>
-								<div class="menu-row-desc">на м'ясному бульйоні, ковбаски, свинина, бекон, лимон та
-									оливки</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">165 ₴</div>
-								<div class="menu-row-weight">300 г</div>
-							</div>
-						</div>
-					</div>
-				</div>
 
-				<!-- Шеф-кухар пропонує -->
-				<div class="menu-category">
-					<div class="menu-category-header"><span class="menu-category-icon">👨‍🍳</span>
-						<div class="menu-category-title">Шеф-кухар пропонує</div>
+					<!-- Шеф-кухар пропонує -->
+					<div class="menu-category">
+						<div class="menu-category-header"><span class="menu-category-icon">👨‍🍳</span>
+							<div class="menu-category-title">Шеф-кухар пропонує</div>
+						</div>
+						<div class="menu-items-list">
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Асорті брускетів</div>
+									<div class="menu-row-desc">хамон, сировялені ковбаси, авокадо, чіз крем, помідор
+										черрі,
+										панчетта</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">360 ₴</div>
+									<div class="menu-row-weight">295 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Гарячий салат "Від шефа"</div>
+									<div class="menu-row-desc">овочі-гриль, мікс салату, свинина, соус сирний</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">256 ₴</div>
+									<div class="menu-row-weight">250 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">М'ясо "Автограф шефа"</div>
+									<div class="menu-row-desc">свинина маринована, загорнута в копчений бекон, запечена.
+										З
+										запеченою картоплею, помідорами, міксом салату</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">305 ₴</div>
+									<div class="menu-row-weight">300 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Стейк лосося запечений з м'ясом креветки</div>
+									<div class="menu-row-desc">стейк лосося на грилі з м'ясом креветки, соус
+										вершково-імбирний</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">480 ₴</div>
+									<div class="menu-row-weight">280 г</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="menu-items-list">
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Асорті брускетів</div>
-								<div class="menu-row-desc">хамон, сировялені ковбаси, авокадо, чіз крем, помідор черрі,
-									панчетта</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">360 ₴</div>
-								<div class="menu-row-weight">295 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Гарячий салат "Від шефа"</div>
-								<div class="menu-row-desc">овочі-гриль, мікс салату, свинина, соус сирний</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">256 ₴</div>
-								<div class="menu-row-weight">250 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">М'ясо "Автограф шефа"</div>
-								<div class="menu-row-desc">свинина маринована, загорнута в копчений бекон, запечена. З
-									запеченою картоплею, помідорами, міксом салату</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">305 ₴</div>
-								<div class="menu-row-weight">300 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Стейк лосося запечений з м'ясом креветки</div>
-								<div class="menu-row-desc">стейк лосося на грилі з м'ясом креветки, соус
-									вершково-імбирний</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">480 ₴</div>
-								<div class="menu-row-weight">280 г</div>
-							</div>
-						</div>
-					</div>
-				</div>
 
-				<!-- М'ясні страви -->
-				<div class="menu-category">
-					<div class="menu-category-header"><span class="menu-category-icon">🥩</span>
-						<div class="menu-category-title">М'ясні страви</div>
+					<!-- М'ясні страви -->
+					<div class="menu-category">
+						<div class="menu-category-header"><span class="menu-category-icon">🥩</span>
+							<div class="menu-category-title">М'ясні страви</div>
+						</div>
+						<div class="menu-items-list">
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Відбивна свинна у паніровці</div>
+									<div class="menu-row-desc">з маринованими опеньками та картопляним пюре</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">305 ₴</div>
+									<div class="menu-row-weight">250 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Лангет з телятини</div>
+									<div class="menu-row-desc">теляча вирізка відбита, обсмажена, на овочах-гриль і
+										мікрозелені</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">545 ₴</div>
+									<div class="menu-row-weight">300 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">М'ясо Олімп</div>
+									<div class="menu-row-desc">філе курки з грибами, помідорами, запечене з твердим
+										сиром та
+										картопляним пюре</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">295 ₴</div>
+									<div class="menu-row-weight">260 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Стейк з свинини на ребрі</div>
+									<div class="menu-row-desc">смажений на грилі, з гострим перцем та зеленню</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">140 ₴</div>
+									<div class="menu-row-weight">100 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Свинина по-домашньому</div>
+									<div class="menu-row-desc">шашлик з свинини</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">98 ₴</div>
+									<div class="menu-row-weight">100 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Печеня по-домашньому</div>
+									<div class="menu-row-desc">картопля тушкована із м'ясом свинини, грибами та гострим
+										перцем</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">310 ₴</div>
+									<div class="menu-row-weight">320 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Печеня по-степовому</div>
+									<div class="menu-row-desc">галушки подаються в горщику з грибним соусом та шматками
+										м'яса</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">320 ₴</div>
+									<div class="menu-row-weight">320 г</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="menu-items-list">
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Відбивна свинна у паніровці</div>
-								<div class="menu-row-desc">з маринованими опеньками та картопляним пюре</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">305 ₴</div>
-								<div class="menu-row-weight">250 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Лангет з телятини</div>
-								<div class="menu-row-desc">теляча вирізка відбита, обсмажена, на овочах-гриль і
-									мікрозелені</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">545 ₴</div>
-								<div class="menu-row-weight">300 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">М'ясо Олімп</div>
-								<div class="menu-row-desc">філе курки з грибами, помідорами, запечене з твердим сиром та
-									картопляним пюре</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">295 ₴</div>
-								<div class="menu-row-weight">260 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Стейк з свинини на ребрі</div>
-								<div class="menu-row-desc">смажений на грилі, з гострим перцем та зеленню</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">140 ₴</div>
-								<div class="menu-row-weight">100 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Свинина по-домашньому</div>
-								<div class="menu-row-desc">шашлик з свинини</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">98 ₴</div>
-								<div class="menu-row-weight">100 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Печеня по-домашньому</div>
-								<div class="menu-row-desc">картопля тушкована із м'ясом свинини, грибами та гострим
-									перцем</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">310 ₴</div>
-								<div class="menu-row-weight">320 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Печеня по-степовому</div>
-								<div class="menu-row-desc">галушки подаються в горщику з грибним соусом та шматками
-									м'яса</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">320 ₴</div>
-								<div class="menu-row-weight">320 г</div>
-							</div>
-						</div>
-					</div>
-				</div>
 
-				<!-- Гарячі закуски -->
-				<div class="menu-category">
-					<div class="menu-category-header"><span class="menu-category-icon">🍳</span>
-						<div class="menu-category-title">Гарячі закуски</div>
+					<!-- Гарячі закуски -->
+					<div class="menu-category">
+						<div class="menu-category-header"><span class="menu-category-icon">🍳</span>
+							<div class="menu-category-title">Гарячі закуски</div>
+						</div>
+						<div class="menu-items-list">
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Батат запечений з пікантним сиром</div>
+									<div class="menu-row-desc">запечений батат з кисломолочним сиром, зеленню та
+										спеціями, з
+										маринованою цибулею, оливками та помідорами</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">210 ₴</div>
+									<div class="menu-row-weight">300 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Овочеві оладки</div>
+									<div class="menu-row-desc">картопля, кабачок, болгарський перець, з свіжими овочами,
+										крем-сиром та сметаною</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">190 ₴</div>
+									<div class="menu-row-weight">300 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Дерун по-королівськи</div>
+									<div class="menu-row-desc">великий дерун на основі вершкового соусу, з курячим філе,
+										грибами, твердим сиром</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">240 ₴</div>
+									<div class="menu-row-weight">300 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Сирники зі шпинатом та слабосоленим лососем</div>
+									<div class="menu-row-desc">кисломолочний сир та шпинат, з болгарським перцем,
+										слабосоленим лососем та вершковим соусом</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">230 ₴</div>
+									<div class="menu-row-weight">200 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Картопля в ананасовому соусі</div>
+									<div class="menu-row-desc">у вершковому соусі зі шматками ананасу з додаванням сиру
+										пармезан</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">125 ₴</div>
+									<div class="menu-row-weight">200 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Деруни по-гуцульськи</div>
+									<div class="menu-row-desc">оладки з картоплі в горщику з вершковим соусом, грибами
+										та
+										запеченою свининою</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">260 ₴</div>
+									<div class="menu-row-weight">350 г</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="menu-items-list">
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Батат запечений з пікантним сиром</div>
-								<div class="menu-row-desc">запечений батат з кисломолочним сиром, зеленню та спеціями, з
-									маринованою цибулею, оливками та помідорами</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">210 ₴</div>
-								<div class="menu-row-weight">300 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Овочеві оладки</div>
-								<div class="menu-row-desc">картопля, кабачок, болгарський перець, з свіжими овочами,
-									крем-сиром та сметаною</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">190 ₴</div>
-								<div class="menu-row-weight">300 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Дерун по-королівськи</div>
-								<div class="menu-row-desc">великий дерун на основі вершкового соусу, з курячим філе,
-									грибами, твердим сиром</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">240 ₴</div>
-								<div class="menu-row-weight">300 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Сирники зі шпинатом та слабосоленим лососем</div>
-								<div class="menu-row-desc">кисломолочний сир та шпинат, з болгарським перцем,
-									слабосоленим лососем та вершковим соусом</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">230 ₴</div>
-								<div class="menu-row-weight">200 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Картопля в ананасовому соусі</div>
-								<div class="menu-row-desc">у вершковому соусі зі шматками ананасу з додаванням сиру
-									пармезан</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">125 ₴</div>
-								<div class="menu-row-weight">200 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Деруни по-гуцульськи</div>
-								<div class="menu-row-desc">оладки з картоплі в горщику з вершковим соусом, грибами та
-									запеченою свининою</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">260 ₴</div>
-								<div class="menu-row-weight">350 г</div>
-							</div>
-						</div>
-					</div>
-				</div>
 
-				<!-- Десерти (span 2 columns) -->
-				<div class="menu-category" style="grid-column:span 2;border-right:none">
-					<div class="menu-category-header"><span class="menu-category-icon">🍰</span>
-						<div class="menu-category-title">Десерти</div>
+					<!-- Десерти (span 2 columns) -->
+					<div class="menu-category" style="grid-column:span 2;border-right:none">
+						<div class="menu-category-header"><span class="menu-category-icon">🍰</span>
+							<div class="menu-category-title">Десерти</div>
+						</div>
+						<div class="menu-items-list" style="display:grid;grid-template-columns:1fr 1fr">
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Тістечко дня</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">110 ₴</div>
+									<div class="menu-row-weight">150 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Морозиво з фруктами</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">140 ₴</div>
+									<div class="menu-row-weight">180 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Яблуко запечене з морозивом</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">140 ₴</div>
+									<div class="menu-row-weight">220 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Банана-спліт</div>
+									<div class="menu-row-desc">банан смажений в кляр, морозиво та вершки</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">190 ₴</div>
+									<div class="menu-row-weight">300 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Млинці</div>
+									<div class="menu-row-desc">з бананом, морозивом або сиром</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">170 ₴</div>
+									<div class="menu-row-weight">180 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Сирники</div>
+									<div class="menu-row-desc">традиційні, з вершковим та ягідним соусом</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">160 ₴</div>
+									<div class="menu-row-weight">150 г</div>
+								</div>
+							</div>
+							<div class="menu-row">
+								<div>
+									<div class="menu-row-name">Вершки з фруктами</div>
+								</div>
+								<div class="menu-row-right">
+									<div class="menu-row-price">150 ₴</div>
+									<div class="menu-row-weight">300 г</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="menu-items-list" style="display:grid;grid-template-columns:1fr 1fr">
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Тістечко дня</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">110 ₴</div>
-								<div class="menu-row-weight">150 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Морозиво з фруктами</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">140 ₴</div>
-								<div class="menu-row-weight">180 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Яблуко запечене з морозивом</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">140 ₴</div>
-								<div class="menu-row-weight">220 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Банана-спліт</div>
-								<div class="menu-row-desc">банан смажений в кляр, морозиво та вершки</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">190 ₴</div>
-								<div class="menu-row-weight">300 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Млинці</div>
-								<div class="menu-row-desc">з бананом, морозивом або сиром</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">170 ₴</div>
-								<div class="menu-row-weight">180 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Сирники</div>
-								<div class="menu-row-desc">традиційні, з вершковим та ягідним соусом</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">160 ₴</div>
-								<div class="menu-row-weight">150 г</div>
-							</div>
-						</div>
-						<div class="menu-row">
-							<div>
-								<div class="menu-row-name">Вершки з фруктами</div>
-							</div>
-							<div class="menu-row-right">
-								<div class="menu-row-price">150 ₴</div>
-								<div class="menu-row-weight">300 г</div>
-							</div>
-						</div>
-					</div>
-				</div>
 
+				</div>
 			</div>
+
+			<!-- Panel: Банкетне (в розробці) -->
+			<div class="menu-panel" id="menu-panel-banquet">
+				<div class="menu-coming-soon">
+					<div class="menu-coming-icon">🍽️</div>
+					<div class="menu-coming-title">Банкетне <em>меню</em></div>
+					<p class="menu-coming-desc">Ми готуємо для вас вишукане банкетне меню з авторськими стравами від
+						шеф-кухаря. Незабаром тут з'явиться повний перелік страв для ваших особливих подій.</p>
+					<span class="menu-coming-badge">Незабаром</span>
+				</div>
+			</div>
+			<!-- Panel: На компанію (в розробці) -->
+			<!-- 
+				ЩОБ ДОДАТИ МЕНЮ "НА КОМПАНІЮ":
+				1. Видаліть блок .menu-coming-soon нижче
+				2. Вставте <div class="menu-categories"> з тією ж структурою що й ресторанне меню
+			-->
+			<div class="menu-panel" id="menu-panel-corporate">
+				<div class="menu-coming-soon">
+					<div class="menu-coming-icon">🥂</div>
+					<div class="menu-coming-title">Меню <em>на компанію</em></div>
+					<p class="menu-coming-desc">Спеціальні пропозиції для корпоративних заходів та великих компаній.
+						Гнучкі меню з урахуванням ваших побажань та бюджету.</p>
+					<span class="menu-coming-badge">Незабаром</span>
+				</div>
+			</div>
+
 		</section>
 
 		<!-- GALLERY -->
@@ -1789,6 +1964,10 @@
 					});
 				}, { threshold: 0.1 });
 				document.querySelectorAll('.section-tag,.section-h2,.section-body,.features,.events-grid,.menu-categories,.gallery-grid,.contact-info,.contact-form,.about-img').forEach(function (el) {
+					// Skip elements inside hidden (non-active) menu panels
+					if (el.closest && el.closest('.menu-panel') && !el.closest('.menu-panel').classList.contains('active')) {
+						return;
+					}
 					el.classList.add('reveal');
 					ro.observe(el);
 				});
@@ -1841,6 +2020,23 @@
 				});
 			}
 		});
+
+		// ─── Menu type switcher ───
+		window.switchMenu = function (type, btn) {
+			document.querySelectorAll('.menu-panel').forEach(function (p) {
+				p.classList.remove('active');
+			});
+			document.querySelectorAll('.menu-type-btn').forEach(function (b) {
+				b.classList.remove('active');
+			});
+			var panel = document.getElementById('menu-panel-' + type);
+			panel.classList.add('active');
+			btn.classList.add('active');
+			// Make any scroll-reveal elements inside panel visible immediately
+			panel.querySelectorAll('.reveal').forEach(function (el) {
+				el.classList.add('visible');
+			});
+		};
 	</script>
 </body>
 
