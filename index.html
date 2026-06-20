@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ÉCLAT — Бутік оригінальних парфумів</title>
+<meta name="description" content="ÉCLAT — оригінальна селективна парфумерія. Versace, Dior, Chanel, Tom Ford. Доставка по Україні 1–3 дні, оплата при отриманні." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --plum-950:#140208;--plum-900:#200610;--plum-800:#30091a;
+    --rose:#ff4d97;--rose-soft:#ff8cc1;--gold:#e7c684;--gold-soft:#f4e6c2;
+    --cream:#fff5f9;--ink:#fff5f9;--muted:#d6a8bd;--line:rgba(231,198,132,.22);
+    --serif:'Bodoni Moda',Georgia,serif;--sans:'Jost',system-ui,sans-serif;
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--plum-950);color:var(--ink);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background:radial-gradient(circle at 14% 10%,rgba(255,46,134,.16),transparent 38%),
+      radial-gradient(circle at 88% 86%,rgba(231,198,132,.1),transparent 40%)}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
+  .eyebrow{font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);font-weight:500}
+
+  h2.title{font-family:var(--serif);font-weight:500;font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.05;letter-spacing:.3px}
+  h2.title em{font-style:italic;color:var(--rose-soft)}
+
+  /* ---------- BUTTONS (unified) ---------- */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;border:1px solid transparent;
+    font-family:var(--sans);font-size:.8rem;line-height:1;letter-spacing:.16em;text-transform:uppercase;font-weight:500;
+    height:50px;padding:0 28px;border-radius:50px;white-space:nowrap;transition:transform .25s,box-shadow .25s,background .25s,border-color .25s}
+  .btn-sm{height:44px;padding:0 22px;font-size:.74rem}
+  .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-soft));color:#2a0a16;box-shadow:0 8px 26px rgba(231,198,132,.22)}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(231,198,132,.4)}
+  .btn-ghost{background:rgba(255,255,255,.02);border-color:var(--line);color:var(--cream)}
+  .btn-ghost:hover{border-color:var(--gold);background:rgba(231,198,132,.06)}
+  .btn-block{width:100%}
+
+  /* ---------- HEADER ---------- */
+  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
+    background:linear-gradient(180deg,rgba(20,2,8,.94),rgba(20,2,8,.66));border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:76px}
+  .logo{font-family:var(--serif);font-size:1.6rem;letter-spacing:.42em;text-transform:uppercase;padding-left:.42em;font-weight:500}
+  .logo b{color:var(--rose);font-weight:600}
+  .nav-links{display:flex;gap:32px;list-style:none}
+  .nav-links a{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);transition:color .25s;position:relative}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-7px;height:1px;width:0;background:var(--gold);transition:width .3s}
+  .nav-links a:hover{color:var(--cream)}.nav-links a:hover::after{width:100%}
+  .nav-right{display:flex;align-items:center;gap:18px}
+  .nav-right .tel{font-size:.95rem;letter-spacing:.06em;color:var(--cream);font-weight:500}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px}
+  .burger span{width:24px;height:2px;background:var(--cream);transition:.3s}
+
+  /* ---------- HERO SLIDER ---------- */
+  .hero{position:relative;padding:0}
+  .slider{position:relative;height:min(86vh,720px);min-height:520px;overflow:hidden}
+  .slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 1.1s ease;display:flex;align-items:center}
+  .slide.active{opacity:1;visibility:visible}
+  .slide .bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center}
+  .slide .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,2,7,.95) 0%,rgba(13,2,7,.7) 42%,rgba(13,2,7,.35) 100%)}
+  .slide-inner{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 28px;width:100%}
+  .slide-copy{max-width:560px;transform:translateY(20px);opacity:0;transition:.9s .25s}
+  .slide.active .slide-copy{transform:none;opacity:1}
+  .slide .eyebrow{display:block;margin-bottom:18px}
+  .slide h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,6.2vw,5rem);line-height:1;letter-spacing:.3px;margin-bottom:8px}
+  .slide h1 em{font-style:italic;color:var(--rose-soft);display:block}
+  .slide p{color:var(--cream);opacity:.86;font-size:1.08rem;max-width:440px;margin:18px 0 30px}
+  .slide-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .slider-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:52px;height:52px;border-radius:50%;
+    background:rgba(20,2,8,.4);border:1px solid var(--line);color:var(--cream);cursor:pointer;display:grid;place-items:center;
+    font-size:1.2rem;transition:.25s;backdrop-filter:blur(6px)}
+  .slider-arrow:hover{background:rgba(231,198,132,.18);border-color:var(--gold)}
+  .slider-arrow.prev{left:24px}.slider-arrow.next{right:24px}
+  .dots{position:absolute;bottom:66px;left:50%;transform:translateX(-50%);z-index:5;display:flex;gap:10px}
+  .dots button{width:34px;height:4px;border-radius:4px;border:none;background:rgba(255,255,255,.28);cursor:pointer;transition:.3s;padding:0}
+  .dots button.active{background:var(--gold);width:48px}
+
+  /* strip — highlighted floating card */
+  .trust{position:relative;margin-top:-44px;z-index:6}
+  .trust-card{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:22px 18px;border-radius:20px;
+    background:linear-gradient(120deg,rgba(48,9,26,.96),rgba(20,2,8,.96));
+    border:1px solid rgba(231,198,132,.35);box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 0 1px rgba(255,46,134,.06) inset;
+    position:relative;overflow:hidden}
+  .trust-card::before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.07),transparent);animation:shine 6s ease-in-out infinite}
+  @keyframes shine{0%,60%{left:-60%}85%,100%{left:120%}}
+  .trust-item{display:flex;align-items:center;gap:14px;padding:6px 18px;position:relative}
+  .trust-item:not(:last-child)::after{content:"";position:absolute;right:0;top:18%;height:64%;width:1px;background:var(--line)}
+  .trust-item .i{flex:0 0 auto;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;color:var(--gold);
+    background:linear-gradient(135deg,rgba(255,46,134,.18),rgba(231,198,132,.16));border:1px solid var(--line)}
+  .trust-item .i svg{width:22px;height:22px}
+  .trust-item .t b{display:block;color:var(--cream);font-weight:600;font-size:1rem;line-height:1.2}
+  .trust-item .t span{font-size:.78rem;color:var(--muted);letter-spacing:.02em}
+
+  /* ---------- SECTION ---------- */
+  section{position:relative;padding:92px 0}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 54px}
+  .sec-head .eyebrow{display:block;margin-bottom:14px}
+  .sec-head p{color:var(--muted);margin-top:14px}
+
+  /* ---------- CATALOG TOOLBAR / FILTERS ---------- */
+  .toolbar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+  .search{flex:1 1 240px;position:relative;min-width:220px}
+  .search input{width:100%;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:50px;
+    padding:0 20px 0 48px;height:50px;color:var(--cream);font-family:var(--sans);font-size:.95rem;transition:border-color .25s}
+  .search input:focus{outline:none;border-color:var(--rose)}
+  .search .ic{position:absolute;left:18px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--muted)}
+  .seg{display:inline-flex;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:50px;padding:4px;gap:2px}
+  .seg-btn{border:none;background:transparent;color:var(--muted);font-family:var(--sans);font-size:.8rem;letter-spacing:.04em;
+    padding:0 16px;height:42px;border-radius:50px;cursor:pointer;transition:.25s;white-space:nowrap}
+  .seg-btn:hover{color:var(--cream)}
+  .seg-btn.active{background:linear-gradient(135deg,var(--gold),var(--gold-soft));color:#2a0a16;font-weight:500}
+  .sort select{height:50px;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:50px;color:var(--cream);
+    font-family:var(--sans);font-size:.88rem;padding:0 44px 0 18px;cursor:pointer;
+    appearance:none;-webkit-appearance:none;-moz-appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%23e7c684' stroke-width='1.6'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 18px center}
+  .sort select:focus{outline:none;border-color:var(--rose)}
+  .sort select option{background:#21060f;color:var(--cream)}
+  .filters-toggle{display:none}
+  .filter-row{display:flex;align-items:center;gap:16px 24px;flex-wrap:wrap;padding:18px 0 4px;border-top:1px solid var(--line);margin-top:4px}
+  .fgroup{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .filter-row>.fgroup:first-child{flex:1 1 100%} /* «Об'єм» завжди на власному рядку — щоб «Скинути все» не зміщувалось */
+  .fl{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+  .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chip-f{border:1px solid var(--line);background:rgba(0,0,0,.2);color:var(--muted);font-family:var(--sans);font-size:.82rem;
+    padding:8px 14px;border-radius:50px;cursor:pointer;transition:.22s}
+  .chip-f:hover{border-color:var(--rose-soft);color:var(--cream)}
+  .chip-f.active{background:rgba(255,77,151,.16);border-color:var(--rose);color:var(--rose-soft);font-weight:500}
+  .price-range{display:flex;align-items:center;gap:8px}
+  .price-range input{width:84px;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:10px;padding:9px 12px;
+    color:var(--cream);font-family:var(--sans);font-size:.86rem}
+  .price-range input:focus{outline:none;border-color:var(--rose)}
+  .price-range span{color:var(--muted)}
+  .reset-link{margin-left:auto;background:none;border:none;color:var(--muted);font-family:var(--sans);font-size:.82rem;
+    letter-spacing:.04em;cursor:pointer;transition:.22s}
+  .reset-link:hover{color:var(--rose)}
+  .results-bar{margin:22px 0 18px;color:var(--muted);font-size:.88rem}
+  .results-bar b{color:var(--cream);font-weight:500}
+  .empty-state{text-align:center;padding:60px 20px;color:var(--muted)}
+  .empty-state .big{font-family:var(--serif);font-size:1.8rem;color:var(--cream);margin-bottom:8px}
+  .empty-state p{margin-bottom:18px}
+  /* pagination */
+  .pagination{display:flex;justify-content:center;gap:8px;margin-top:46px;flex-wrap:wrap}
+  .pg-btn{min-width:46px;height:46px;padding:0 12px;border:1px solid var(--line);background:rgba(0,0,0,.2);
+    color:var(--muted);font-family:var(--serif);font-size:1.05rem;border-radius:12px;cursor:pointer;transition:.22s}
+  .pg-btn:hover:not(:disabled){border-color:var(--gold);color:var(--cream)}
+  .pg-btn.active{background:linear-gradient(135deg,var(--gold),var(--gold-soft));color:#2a0a16;border-color:var(--gold);font-weight:600}
+  .pg-btn:disabled{opacity:.35;cursor:not-allowed}
+
+  /* ---------- CATALOG ---------- */
+  .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  @keyframes cardIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  .pcard{animation:cardIn .5s ease backwards}
+  .pcard{position:relative;background:linear-gradient(180deg,var(--plum-900),var(--plum-950));border:1px solid var(--line);
+    border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .35s,border-color .35s;display:flex;flex-direction:column}
+  .pcard:hover{transform:translateY(-7px);border-color:rgba(231,198,132,.5)}
+  .pcard .thumb{height:260px;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 32%,rgba(255,255,255,.06),transparent 62%),var(--plum-800)}
+  .pcard .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+  .pcard:hover .thumb img{transform:scale(1.06)}
+  .pcard .tag{position:absolute;top:14px;left:14px;background:var(--rose);color:#2a0a16;font-size:.62rem;letter-spacing:.1em;
+    text-transform:uppercase;font-weight:600;padding:4px 10px;border-radius:20px;z-index:3}
+  .pcard .body{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1}
+  .pcard .brand{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+  .pcard h3{font-family:var(--serif);font-size:1.32rem;font-weight:500;margin:4px 0 6px;line-height:1.12}
+  .pcard .notes{font-size:.8rem;color:var(--muted);min-height:34px}
+  .pcard .foot{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
+  .pcard .price .now{font-size:1.3rem;font-weight:600;color:var(--gold-soft)}
+  .pcard .price .from{font-size:.7rem;color:var(--muted);display:block;letter-spacing:.05em}
+  .pcard .open-ic{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--gold);transition:.25s}
+  .pcard:hover .open-ic{background:var(--gold);color:#2a0a16;border-color:var(--gold)}
+  .cat-more{text-align:center;margin-top:44px}
+
+  /* ---------- MODAL ---------- */
+  .overlay{position:fixed;inset:0;z-index:100;background:rgba(8,1,4,.8);backdrop-filter:blur(8px);
+    display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:.3s}
+  .overlay.open{opacity:1;visibility:visible}
+  .modal{position:relative;width:100%;max-width:940px;max-height:90vh;overflow:auto;background:linear-gradient(180deg,var(--plum-900),var(--plum-950));
+    border:1px solid var(--line);border-radius:24px;display:grid;grid-template-columns:1fr 1fr;
+    transform:translateY(24px) scale(.98);transition:transform .35s}
+  .overlay.open .modal{transform:none}
+  .modal-close{position:absolute;top:16px;right:16px;z-index:6;width:42px;height:42px;border-radius:50%;
+    background:rgba(20,2,8,.7);border:1px solid var(--line);color:var(--cream);font-size:1.3rem;cursor:pointer;display:grid;place-items:center;transition:.25s}
+  .modal-close:hover{border-color:var(--rose);color:var(--rose);transform:rotate(90deg)}
+  /* gallery */
+  .m-gallery{padding:24px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:14px}
+  .m-main{flex:1;min-height:320px;border-radius:16px;position:relative;overflow:hidden;background:var(--plum-800)}
+  .m-main img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:opacity .35s}
+  .m-thumbs{display:flex;gap:12px}
+  .m-thumb{flex:1;aspect-ratio:1;border-radius:12px;border:1px solid var(--line);cursor:pointer;overflow:hidden;
+    background:var(--plum-800);transition:.25s;padding:0}
+  .m-thumb img{width:100%;height:100%;object-fit:cover}
+  .m-thumb.active{border-color:var(--gold)}
+  /* info */
+  .m-info{padding:34px 34px 34px;display:flex;flex-direction:column}
+  .m-info .brand{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+  .m-info h2{font-family:var(--serif);font-weight:500;font-size:2rem;line-height:1.05;margin:6px 0 4px}
+  .m-stars{color:var(--gold);letter-spacing:2px;font-size:.9rem;margin-bottom:14px}
+  .m-desc{color:var(--muted);font-size:.94rem;margin-bottom:18px}
+  .m-notes{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+  .m-pill{font-size:.7rem;letter-spacing:.04em;color:var(--muted);border:1px solid var(--line);border-radius:20px;padding:5px 11px}
+  .m-label{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  .m-vols{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+  .m-vol{border:1px solid var(--line);border-radius:12px;padding:10px 16px;cursor:pointer;text-align:center;transition:.25s;background:rgba(0,0,0,.2)}
+  .m-vol .ml{font-size:.95rem;color:var(--cream);font-weight:500}
+  .m-vol .pr{font-size:.78rem;color:var(--muted)}
+  .m-vol.active{border-color:var(--gold);background:rgba(231,198,132,.1)}
+  .m-vol.active .pr{color:var(--gold-soft)}
+  .m-price{display:flex;align-items:baseline;gap:12px;margin-bottom:20px}
+  .m-price .now{font-family:var(--serif);font-size:2.1rem;color:var(--gold-soft)}
+  .m-price .old{color:var(--muted);text-decoration:line-through}
+  .m-form{margin-top:auto;display:grid;gap:12px}
+  .m-form input{background:rgba(0,0,0,.28);border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--cream);
+    font-family:var(--sans);font-size:.96rem;transition:border-color .25s}
+  .m-form input:focus{outline:none;border-color:var(--rose)}
+  .m-form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .m-note{font-size:.72rem;color:var(--muted);text-align:center}
+
+  /* ---------- FEATURES ---------- */
+  .feat-bg{background:radial-gradient(circle at 50% 0,rgba(255,46,134,.1),transparent 50%),var(--plum-900)}
+  .feats{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .feat{padding:30px 24px;border:1px solid var(--line);border-radius:var(--radius);background:rgba(20,2,8,.5);transition:.35s}
+  .feat:hover{border-color:var(--rose);transform:translateY(-6px)}
+  .feat .ic{width:54px;height:54px;display:grid;place-items:center;border-radius:14px;margin-bottom:18px;color:var(--gold);
+    background:linear-gradient(135deg,rgba(255,46,134,.18),rgba(231,198,132,.14))}
+  .feat h4{font-family:var(--serif);font-size:1.3rem;font-weight:500;margin-bottom:8px}
+  .feat p{font-size:.88rem;color:var(--muted)}
+
+  /* ---------- STEPS ---------- */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s}
+  .step{position:relative;padding:32px 26px;border-top:1px solid var(--line)}
+  .step::before{counter-increment:s;content:"0" counter(s);font-family:var(--serif);font-size:3.2rem;color:transparent;
+    -webkit-text-stroke:1px var(--gold);display:block;margin-bottom:12px}
+  .step h4{font-family:var(--serif);font-size:1.45rem;font-weight:500;margin-bottom:8px}
+  .step p{color:var(--muted);font-size:.92rem}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testi-bg{background:var(--plum-900)}
+  .testis{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .testi{padding:30px 28px;border:1px solid var(--line);border-radius:var(--radius);background:rgba(15,2,8,.55)}
+  .testi .stars{color:var(--gold);letter-spacing:3px;margin-bottom:14px}
+  .testi q{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--cream);display:block;margin-bottom:18px;line-height:1.4}
+  .testi .who{display:flex;align-items:center;gap:12px}
+  .testi .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--gold));display:grid;place-items:center;
+    font-family:var(--serif);color:#2a0a16;font-weight:600}
+  .testi .who b{display:block;font-weight:500;font-size:.92rem}
+  .testi .who span{font-size:.78rem;color:var(--muted)}
+
+  /* ---------- FAQ ---------- */
+  .faq{max-width:780px;margin:0 auto}
+  .qa{border-bottom:1px solid var(--line)}
+  .qa summary{list-style:none;cursor:pointer;padding:24px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;
+    font-family:var(--serif);font-size:1.25rem;font-weight:500}
+  .qa summary::-webkit-details-marker{display:none}
+  .qa .plus{flex:0 0 auto;width:32px;height:32px;border:1px solid var(--gold);border-radius:50%;position:relative;transition:.3s}
+  .qa .plus::before,.qa .plus::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--gold);transition:.3s}
+  .qa .plus::before{width:12px;height:1.5px}
+  .qa .plus::after{width:1.5px;height:12px}
+  .qa[open] .plus{background:var(--gold)}
+  .qa[open] .plus::before,.qa[open] .plus::after{background:#2a0a16}
+  .qa[open] .plus::after{height:0}
+  .qa p{color:var(--muted);padding:0 0 24px;max-width:92%}
+  @keyframes faqIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+  .qa[open] p{animation:faqIn .4s ease}
+  .qa[open] summary{color:var(--rose-soft)}
+  .qa summary{transition:color .25s}
+
+  /* ---------- ORDER ---------- */
+  .order-bg{background:radial-gradient(circle at 82% 18%,rgba(231,198,132,.13),transparent 45%),
+    radial-gradient(circle at 8% 92%,rgba(255,46,134,.16),transparent 45%),var(--plum-950)}
+  .order-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .order-grid h2{margin-bottom:16px}
+  .order-list{list-style:none;margin-top:22px}
+  .order-list li{padding:9px 0;color:var(--muted);display:flex;gap:12px;align-items:center}
+  .order-list li::before{content:"✦";color:var(--gold)}
+  form.card-form{background:rgba(20,2,8,.7);border:1px solid var(--line);border-radius:22px;padding:36px 32px}
+  form.card-form .field{margin-bottom:16px}
+  form.card-form label{display:block;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  form.card-form input,form.card-form select{width:100%;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;
+    padding:14px 16px;color:var(--cream);font-family:var(--sans);font-size:.96rem;transition:border-color .25s}
+  form.card-form select{appearance:none;-webkit-appearance:none;-moz-appearance:none;padding-right:44px;cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%23e7c684' stroke-width='1.6'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 16px center}
+  form.card-form select option{background:#21060f;color:var(--cream)}
+  form.card-form input:focus,form.card-form select:focus{outline:none;border-color:var(--rose)}
+  .form-note{font-size:.72rem;color:var(--muted);text-align:center;margin-top:12px}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--plum-950);border-top:1px solid var(--line);padding:62px 0 28px}
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.1fr;gap:40px;margin-bottom:42px}
+  footer .logo{padding:0;font-size:1.5rem;margin-bottom:16px}
+  footer p{color:var(--muted);font-size:.9rem}
+  .foot-col h5{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+  .foot-col a{display:block;color:var(--muted);font-size:.92rem;padding:6px 0;transition:color .25s}
+  .foot-col a:hover{color:var(--cream)}
+  .socials{display:flex;gap:12px;margin-top:14px}
+  .socials a{width:44px;height:44px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--muted);transition:.3s}
+  .socials a svg{width:20px;height:20px}
+  .socials a:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px)}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:.82rem}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:1000px){
+    .cat-grid{grid-template-columns:repeat(2,1fr)}.feats{grid-template-columns:repeat(2,1fr)}
+    .trust-card{grid-template-columns:repeat(2,1fr);gap:6px 0}
+    .trust-item:nth-child(2)::after{display:none}
+  }
+  @media(max-width:880px){
+    .nav-links,.nav-right .tel{display:none}.burger{display:flex}
+    .modal{grid-template-columns:1fr;max-width:520px}.m-gallery{border-right:none;border-bottom:1px solid var(--line)}
+    .order-grid{grid-template-columns:1fr;gap:32px}.steps,.testis,.foot-grid{grid-template-columns:1fr 1fr}
+    .slider-arrow{display:none}
+  }
+  @media(max-width:760px){
+    .filters-toggle{display:inline-flex;order:2}
+    .filter-row{display:none;width:100%;flex-direction:column;align-items:stretch;gap:16px}
+    .filter-row.open{display:flex;animation:cardIn .35s ease}
+    .filter-row>.fgroup:first-child{flex-basis:auto}
+    .toolbar{gap:10px}
+    .search{flex:1 1 100%;order:1}
+    .sort{order:3;flex:1}.sort select{width:100%}
+    .seg{order:4;width:100%;justify-content:space-between}
+    .seg-btn{flex:1;padding:0 6px;font-size:.78rem}
+    .reset-link{margin-left:auto}
+  }
+  @media(max-width:600px){
+    .cat-grid,.feats,.steps,.testis,.foot-grid{grid-template-columns:1fr}
+    .wrap{padding:0 18px}section{padding:64px 0}.m-form .row{grid-template-columns:1fr}
+    .trust{margin-top:-30px}
+    .trust-item{padding:6px 10px;gap:11px}
+    .trust-item .i{width:40px;height:40px}
+    .trust-item .t b{font-size:.9rem}.trust-item .t span{font-size:.72rem}
+  }
+  .mobile-menu{position:fixed;inset:0;z-index:90;background:rgba(13,1,6,.97);backdrop-filter:blur(10px);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;
+    visibility:hidden;opacity:0;pointer-events:none;transition:opacity .4s ease,visibility .4s ease}
+  .mobile-menu.open{visibility:visible;opacity:1;pointer-events:auto}
+  .mobile-menu a{font-family:var(--serif);font-size:1.8rem;color:var(--cream);
+    opacity:0;transform:translateY(18px);transition:opacity .45s ease,transform .45s ease}
+  .mobile-menu.open a{opacity:1;transform:none}
+  .mobile-menu.open a:nth-child(2){transition-delay:.08s}
+  .mobile-menu.open a:nth-child(3){transition-delay:.14s}
+  .mobile-menu.open a:nth-child(4){transition-delay:.20s}
+  .mobile-menu.open a:nth-child(5){transition-delay:.26s}
+  .mobile-menu.open a:nth-child(6){transition-delay:.32s}
+  .mobile-menu .close{position:absolute;top:22px;right:26px;font-size:2rem;color:var(--muted);background:none;border:none;cursor:pointer;
+    transition:transform .3s,color .25s}
+  .mobile-menu .close:hover{color:var(--rose);transform:rotate(90deg)}
+  /* бургер → X */
+  .burger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger.active span:nth-child(2){opacity:0}
+  .burger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo">É<b>CLAT</b></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#catalog">Каталог</a></li>
+        <li><a href="#features">Переваги</a></li>
+        <li><a href="#reviews">Відгуки</a></li>
+        <li><a href="#faq">Питання</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <a class="tel" href="tel:+380730000000">+38 (073) 000 00 00</a>
+      <a href="#order" class="btn btn-gold btn-sm">Замовити</a>
+      <button class="burger" id="burger" aria-label="Меню" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mm">
+  <button class="close" onclick="closeMM()">×</button>
+  <a href="#catalog" onclick="closeMM()">Каталог</a>
+  <a href="#features" onclick="closeMM()">Переваги</a>
+  <a href="#reviews" onclick="closeMM()">Відгуки</a>
+  <a href="#faq" onclick="closeMM()">Питання</a>
+  <a href="#order" onclick="closeMM()">Замовити</a>
+</div>
+
+<!-- HERO SLIDER -->
+<section class="hero">
+  <div class="slider" id="slider">
+    <div class="slide active">
+      <div class="bg" style="background-image:url('assets/products/coco-mademoiselle.jpg')"></div>
+      <div class="slide-inner"><div class="slide-copy">
+        <span class="eyebrow">Оригінальна парфумерія</span>
+        <h1>Світові аромати<em>у вашому місті</em></h1>
+        <p>Chanel, Dior, Versace, YSL та інші — лише оригінал, із гарантією та доставкою 1–3 дні.</p>
+        <div class="slide-cta"><a href="#catalog" class="btn btn-gold">До каталогу</a><a href="#order" class="btn btn-ghost">Замовити</a></div>
+      </div></div>
+    </div>
+    <div class="slide">
+      <div class="bg" style="background-image:url('assets/products/dior-sauvage.jpg')"></div>
+      <div class="slide-inner"><div class="slide-copy">
+        <span class="eyebrow">Dior · Бестселер</span>
+        <h1>Dior<em>Sauvage</em></h1>
+        <p>Бергамот, перець і амброксан. Магнетичний чоловічий аромат-характер.</p>
+        <div class="slide-cta"><a href="#product/dior-sauvage" class="btn btn-gold" onclick="openBySlug('dior-sauvage');return false">Переглянути</a></div>
+      </div></div>
+    </div>
+    <div class="slide">
+      <div class="bg" style="background-image:url('assets/products/versace-bright-crystal.jpg')"></div>
+      <div class="slide-inner"><div class="slide-copy">
+        <span class="eyebrow">Versace · Жіночі</span>
+        <h1>Bright<em>Crystal</em></h1>
+        <p>Кришталево-свіжий шлейф із нотами гранату, півонії та магнолії.</p>
+        <div class="slide-cta"><a href="#product/versace-bright-crystal" class="btn btn-gold" onclick="openBySlug('versace-bright-crystal');return false">Переглянути</a></div>
+      </div></div>
+    </div>
+    <div class="slide">
+      <div class="bg" style="background-image:url('assets/products/valentino-uomo.jpg')"></div>
+      <div class="slide-inner"><div class="slide-copy">
+        <span class="eyebrow">Знижки до −30%</span>
+        <h1>Аромати<em>зі знижкою</em></h1>
+        <p>Оригінальні бестселери Dior, YSL, Valentino за спеціальними цінами цього тижня.</p>
+        <div class="slide-cta"><a href="#catalog" class="btn btn-gold">Обрати аромат</a></div>
+      </div></div>
+    </div>
+    <div class="slide">
+      <div class="bg" style="background-image:url('assets/products/ysl-libre.jpg')"></div>
+      <div class="slide-inner"><div class="slide-copy">
+        <span class="eyebrow">Нішева розкіш</span>
+        <h1>Колекція<em>Luxe</em></h1>
+        <p>Селективні та преміальні аромати для тих, хто шукає свій неповторний підпис.</p>
+        <div class="slide-cta"><a href="#catalog" class="btn btn-gold">Дивитись колекцію</a></div>
+      </div></div>
+    </div>
+    <button class="slider-arrow prev" onclick="move(-1)" aria-label="Назад">‹</button>
+    <button class="slider-arrow next" onclick="move(1)" aria-label="Вперед">›</button>
+    <div class="dots" id="dots"></div>
+  </div>
+
+  <!-- trust strip -->
+  <div class="trust">
+    <div class="wrap">
+      <div class="trust-card">
+        <div class="trust-item reveal">
+          <span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 3v6c0 4.5-3 8-7 11-4-3-7-6.5-7-11V5l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <div class="t"><b>100% оригінал</b><span>гарантія справжності</span></div>
+        </div>
+        <div class="trust-item reveal">
+          <span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v8H3z"/><path d="M14 10h4l3 3v2h-7z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg></span>
+          <div class="t"><b>Доставка 1–3 дні</b><span>по всій Україні</span></div>
+        </div>
+        <div class="trust-item reveal">
+          <span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/></svg></span>
+          <div class="t"><b>Оплата при отриманні</b><span>з перевіркою товару</span></div>
+        </div>
+        <div class="trust-item reveal">
+          <span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.3 5.9.9-4.2 4.1 1 5.9-5.3-2.8-5.3 2.8 1-5.9L3.5 9.2l5.9-.9z"/></svg></span>
+          <div class="t"><b><span class="count" data-to="12000">0</span>+ відгуків</b><span>середня оцінка 4.9★</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<section id="catalog">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Каталог</span>
+      <h2 class="title">Обери <em>свій аромат</em></h2>
+      <p>Натисніть на товар, щоб переглянути фото, опис та оформити замовлення.</p>
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar reveal">
+      <div class="search">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+        <input id="search" type="text" placeholder="Пошук за назвою, брендом або нотою…" oninput="update()" />
+      </div>
+      <div class="seg" id="genderSeg">
+        <button class="seg-btn active" data-gender="" onclick="pickGender(this)">Усі</button>
+        <button class="seg-btn" data-gender="Жіночі" onclick="pickGender(this)">Жіночі</button>
+        <button class="seg-btn" data-gender="Чоловічі" onclick="pickGender(this)">Чоловічі</button>
+        <button class="seg-btn" data-gender="Унісекс" onclick="pickGender(this)">Унісекс</button>
+      </div>
+      <div class="sort">
+        <select id="sort" onchange="update()" aria-label="Сортування">
+          <option value="pop">Популярні</option>
+          <option value="cheap">Спочатку дешевші</option>
+          <option value="exp">Спочатку дорожчі</option>
+          <option value="az">За назвою А–Я</option>
+        </select>
+      </div>
+      <button class="btn btn-ghost btn-sm filters-toggle" onclick="document.getElementById('filterRow').classList.toggle('open')">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg> Фільтри
+      </button>
+    </div>
+
+    <!-- FILTER ROW -->
+    <div class="filter-row" id="filterRow">
+      <div class="fgroup">
+        <span class="fl">Об'єм</span>
+        <div class="chips" id="volChips"></div>
+      </div>
+      <div class="fgroup">
+        <span class="fl">Ціна, ₴</span>
+        <div class="price-range">
+          <input id="pmin" type="number" inputmode="numeric" placeholder="від" oninput="update()" />
+          <span>—</span>
+          <input id="pmax" type="number" inputmode="numeric" placeholder="до" oninput="update()" />
+        </div>
+      </div>
+      <button class="reset-link" onclick="resetFilters()">Скинути все ✕</button>
+    </div>
+
+    <div class="results-bar reveal"><span id="count"></span></div>
+    <div class="cat-grid" id="catGrid"></div>
+    <div class="empty-state" id="emptyState" hidden>
+      <div class="big">Нічого не знайдено</div>
+      <p>Спробуйте змінити фільтри або пошуковий запит.</p>
+      <button class="btn btn-ghost btn-sm" onclick="resetFilters()">Скинути фільтри</button>
+    </div>
+    <div class="pagination" id="pagination"></div>
+    <div class="cat-more reveal"><a href="#order" class="btn btn-ghost">Не знайшли потрібний? Залиште заявку</a></div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()" aria-label="Закрити">×</button>
+    <div class="m-gallery">
+      <div class="m-main"><img id="mMainImg" src="" alt="" /></div>
+      <div class="m-thumbs" id="mThumbs"></div>
+    </div>
+    <div class="m-info">
+      <div class="brand" id="mBrand"></div>
+      <h2 id="mName"></h2>
+      <div class="m-stars">★★★★★</div>
+      <p class="m-desc" id="mDesc"></p>
+      <div class="m-notes" id="mNotes"></div>
+      <div class="m-label">Об'єм</div>
+      <div class="m-vols" id="mVols"></div>
+      <div class="m-price"><span class="now" id="mNow"></span><span class="old" id="mOld"></span></div>
+      <form class="m-form" onsubmit="event.preventDefault();orderDone(this)">
+        <div class="row">
+          <input type="text" placeholder="Ваше ім'я" required />
+          <input type="tel" placeholder="Телефон" required />
+        </div>
+        <button type="submit" class="btn btn-gold btn-block">Замовити в 1 клік</button>
+        <p class="m-note">Менеджер передзвонить для підтвердження</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features" class="feat-bg">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Чому ÉCLAT</span><h2 class="title">Аромат, що <em>залишається</em></h2></div>
+    <div class="feats">
+      <div class="feat reveal"><div class="ic">💎</div><h4>100% оригінал</h4><p>Лише офіційні постачальники. Гарантія справжності кожного флакона.</p></div>
+      <div class="feat reveal"><div class="ic">⏳</div><h4>Стійкий шлейф</h4><p>Насичена концентрація тримає аромат протягом усього дня.</p></div>
+      <div class="feat reveal"><div class="ic">🚚</div><h4>Швидка доставка</h4><p>Нова пошта 1–3 дні. Оплата при отриманні з перевіркою товару.</p></div>
+      <div class="feat reveal"><div class="ic">🎁</div><h4>Подарункова упаковка</h4><p>Елегантний бокс безкоштовно — готовий до того, щоб дарувати.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Як замовити</span><h2 class="title">Три прості <em>кроки</em></h2></div>
+    <div class="steps">
+      <div class="step reveal"><h4>Оберіть аромат</h4><p>Натисніть на товар у каталозі, оберіть об'єм і залиште контакти.</p></div>
+      <div class="step reveal"><h4>Підтвердження</h4><p>Менеджер зателефонує, уточнить деталі та спосіб доставки.</p></div>
+      <div class="step reveal"><h4>Отримання</h4><p>Нова пошта 1–3 дні. Оплата при отриманні з перевіркою.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="testi-bg">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Відгуки</span><h2 class="title">Що кажуть <em>наші клієнтки</em></h2></div>
+    <div class="testis">
+      <div class="testi reveal"><div class="stars">★★★★★</div><q>Аромат тримається весь робочий день, а шлейф просто чарівний. Замовила вже вдруге.</q><div class="who"><div class="av">О</div><div><b>Олена</b><span>Київ</span></div></div></div>
+      <div class="testi reveal"><div class="stars">★★★★★</div><q>Прийшло на наступний день у гарному боксі. Оригінал 100%, порівнювала з бутіком.</q><div class="who"><div class="av">М</div><div><b>Марія</b><span>Львів</span></div></div></div>
+      <div class="testi reveal"><div class="stars">★★★★★</div><q>Брала в подарунок сестрі — у захваті. Absolu насиченіший за звичайний Bright Crystal.</q><div class="who"><div class="av">І</div><div><b>Ірина</b><span>Одеса</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Питання</span><h2 class="title">Часті <em>запитання</em></h2></div>
+    <div class="faq reveal">
+      <details class="qa" open><summary>Це оригінальний парфум?<span class="plus"></span></summary><p>Так. Ми працюємо лише з офіційними постачальниками й даємо гарантію оригінальності. Упаковка запаяна, можна перевірити при отриманні.</p></details>
+      <details class="qa"><summary>Яка стійкість аромату?<span class="plus"></span></summary><p>Залежно від концентрації шлейф зберігається 6–10 годин залежно від типу шкіри.</p></details>
+      <details class="qa"><summary>Як відбувається доставка та оплата?<span class="plus"></span></summary><p>Доставка Новою поштою по всій Україні за 1–3 дні. Доступна оплата при отриманні з можливістю перевірки товару.</p></details>
+      <details class="qa"><summary>Чи можна повернути товар?<span class="plus"></span></summary><p>Так, упродовж 14 днів за умови збереження запаяної упаковки згідно із законодавством України.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER -->
+<section id="order" class="order-bg">
+  <div class="wrap order-grid">
+    <div class="reveal">
+      <span class="eyebrow">Замовлення</span>
+      <h2 class="title">Оформіть за <em>хвилину</em></h2>
+      <p style="color:var(--muted);margin-top:14px">Залиште контакти — менеджер передзвонить, підтвердить наявність та оформить доставку.</p>
+      <ul class="order-list">
+        <li>Знижка до −30% на сьогодні</li>
+        <li>Оплата при отриманні з перевіркою</li>
+        <li>Подарункове пакування безкоштовно</li>
+      </ul>
+    </div>
+    <form class="card-form reveal" onsubmit="event.preventDefault();orderDone(this)">
+      <div class="field"><label>Ваше ім'я</label><input type="text" placeholder="Олена" required /></div>
+      <div class="field"><label>Телефон</label><input type="tel" placeholder="+38 (0__) ___ __ __" required /></div>
+      <div class="field"><label>Аромат</label><select id="orderSelect"><option>Оберіть із каталогу або впишіть свій</option></select></div>
+      <button type="submit" class="btn btn-gold btn-block">Підтвердити замовлення</button>
+      <p class="form-note">Натискаючи кнопку, ви погоджуєтесь з обробкою даних</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo">É<b>CLAT</b></div>
+        <p>Бутік оригінальної нішевої та селективної парфумерії. Працюємо по всій Україні з 2019 року.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram" title="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="Telegram" title="Telegram">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.94 4.43a1.2 1.2 0 0 0-1.22-.18L3.4 11.04c-.86.33-.83 1.57.04 1.86l4.3 1.43 1.62 5.04c.2.6.95.78 1.42.36l2.4-2.16 4.3 3.16c.5.37 1.22.1 1.36-.5l3.1-14.4a1.2 1.2 0 0 0-.0-2.4zM9.9 14.28l-.5 3.55-.78-4.04 7.9-5.1z"/></svg>
+          </a>
+          <a href="viber://chat" aria-label="Viber" title="Viber">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7 2 3 5.4 3 9.7c0 2.3 1.2 4.4 3.1 5.8v3.3l3-1.7c.9.2 1.9.3 2.9.3 5 0 9-3.4 9-7.7S17 2 12 2zm4.9 10.7c-.2.5-1.1 1-1.6 1.1-.4.1-1 .1-1.6-.1-.4-.1-.8-.3-1.4-.5-2.4-1-3.9-3.4-4-3.6-.1-.2-1-1.2-1-2.3 0-1.1.6-1.6.8-1.8.2-.2.4-.3.6-.3h.4c.1 0 .3 0 .5.4l.6 1.5c.1.1.1.3 0 .4l-.2.3-.3.3c-.1.1-.2.3-.1.5.1.2.5.9 1.2 1.5.8.7 1.5 1 1.7 1.1.2.1.4.1.5-.1l.4-.5c.2-.2.3-.2.5-.1l1.4.7c.2.1.4.2.4.3.1.1.1.6 0 1z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="foot-col"><h5>Розділи</h5><a href="#catalog">Каталог</a><a href="#features">Переваги</a><a href="#reviews">Відгуки</a><a href="#faq">Питання</a></div>
+      <div class="foot-col"><h5>Сервіс</h5><a href="#">Доставка й оплата</a><a href="#">Повернення</a><a href="#">Гарантія оригіналу</a><a href="#">Підбір аромату</a></div>
+      <div class="foot-col"><h5>Контакти</h5><a href="tel:+380730000000">+38 (073) 000 00 00</a><a href="mailto:hello@eclat.ua">hello@eclat.ua</a><a href="#">Київ, вул. Хрещатик, 1</a><a href="#">Пн–Нд · 9:00–21:00</a></div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 ÉCLAT. Усі права захищені.</span><span>Оплата: Visa · Mastercard · Готівка при отриманні</span></div>
+  </div>
+</footer>
+
+<script>
+/* ---------- DATA ---------- */
+const BASE="assets/products/";
+const LIFE=[BASE+"collection.jpg",BASE+"atmosphere-gold.jpg"]; // лайфстайл-кадри для галереї
+const PRODUCTS=[
+ {brand:"Versace",name:"Eros",slug:"versace-eros",fam:"Деревні",gender:"Чоловічі",tag:"Хіт",img:BASE+"versace-eros.jpg",
+  notes:["М'ята","Ваніль","Тонка боб"],
+  desc:"Магнетичний чоловічий аромат: свіжа м'ята, солодка ваніль і боби тонка у флаконі кольору морської хвилі.",
+  vols:[[50,2190,2700],[100,2890,3600]]},
+ {brand:"Chanel",name:"N°5 Eau de Parfum",slug:"chanel-no5",fam:"Квіткові",gender:"Жіночі",tag:"Легенда",img:BASE+"chanel-no5.jpg",
+  notes:["Альдегіди","Іланг-іланг","Травневі троянди"],
+  desc:"Найвідоміший аромат світу: альдегідний квітковий букет із троянд, жасмину та іланг-ілангу.",
+  vols:[[35,3290,4000],[50,4290,5200],[100,5990,7200]]},
+ {brand:"Chanel",name:"Coco Mademoiselle",slug:"coco-mademoiselle",fam:"Цитрусові",gender:"Жіночі",tag:"Хіт",img:BASE+"coco-mademoiselle.jpg",
+  notes:["Апельсин","Жасмин","Пачулі"],
+  desc:"Зухвалий шипровий аромат: іскристий апельсин, квіткове серце та чуттєві пачулі.",
+  vols:[[35,2790,3400],[50,3450,4200],[100,4490,5500]]},
+ {brand:"YSL",name:"Black Opium",slug:"black-opium",fam:"Гурманські",gender:"Жіночі",tag:"−20%",img:BASE+"black-opium.jpg",
+  notes:["Кава","Ваніль","Біла квітка"],
+  desc:"Адреналіновий гурман: чорна кава, солодка ваніль і білі квіти у блискучому флаконі.",
+  vols:[[30,2190,2700],[50,2790,3500],[90,3490,4400]]},
+ {brand:"Chanel",name:"Bleu de Chanel",slug:"bleu-de-chanel",fam:"Деревні",gender:"Чоловічі",tag:"",img:BASE+"bleu-de-chanel.jpg",
+  notes:["Грейпфрут","Імбир","Кедр"],
+  desc:"Шляхетний деревно-ароматичний аромат: цитрусовий старт, пряний імбир і димний кедр.",
+  vols:[[50,3290,4000],[100,4290,5200]]},
+ {brand:"Prada",name:"L'Homme",slug:"prada-lhomme",fam:"Деревні",gender:"Чоловічі",tag:"",img:BASE+"prada.jpg",
+  notes:["Неролі","Ірис","Кедр"],
+  desc:"Сучасна елегантність: мильна свіжість неролі, пудровий ірис і теплий кедр на тлі вулканічної ночі.",
+  vols:[[50,2690,3300],[100,3490,4300]]},
+ {brand:"Chanel",name:"Coco Noir",slug:"coco-noir",fam:"Східні",gender:"Жіночі",tag:"",img:BASE+"coco-noir.jpg",
+  notes:["Грейпфрут","Троянда","Пачулі"],
+  desc:"Загадковий східний аромат: іскристий грейпфрут, оксамитова троянда та глибокі пачулі.",
+  vols:[[35,3290,4000],[50,3990,4900],[100,5290,6400]]},
+ {brand:"Chanel",name:"Gabrielle",slug:"gabrielle",fam:"Квіткові",gender:"Жіночі",tag:"Новинка",img:BASE+"gabrielle.jpg",
+  notes:["Жасмин","Тубероза","Іланг-іланг"],
+  desc:"Сяйливий букет із чотирьох білих квітів: жасмин, тубероза, помаранчевий цвіт та іланг-іланг.",
+  vols:[[35,3490,4200],[50,4290,5200],[100,5790,7000]]},
+ {brand:"Miu Miu",name:"Miu Miu",slug:"miu-miu",fam:"Квіткові",gender:"Жіночі",tag:"",img:BASE+"miu-miu.jpg",
+  notes:["Лілія","Жасмин","Акорд деревини"],
+  desc:"Ніжний квітковий аромат у гранованому флаконі: водяна лілія, жасмин і м'яка деревина.",
+  vols:[[30,2090,2600],[50,2690,3300],[100,3490,4300]]},
+ {brand:"Dior",name:"Miss Dior",slug:"miss-dior",fam:"Квіткові",gender:"Жіночі",tag:"Хіт",img:BASE+"miss-dior.jpg",
+  notes:["Півонія","Троянда","Рожевий перець"],
+  desc:"Романтичний квітковий аромат: соковита півонія, троянда та грайливий рожевий перець.",
+  vols:[[30,2690,3300],[50,3390,4200],[100,4490,5500]]},
+ {brand:"Versace",name:"Bright Crystal",slug:"versace-bright-crystal",fam:"Квіткові",gender:"Жіночі",tag:"Хіт",img:BASE+"versace-bright-crystal.jpg",
+  notes:["Гранат","Півонія","Магнолія"],
+  desc:"Кришталево-свіжий аромат: соковитий гранат, ніжна півонія та магнолія у рожевому гранованому флаконі.",
+  vols:[[30,1690,2100],[50,2290,2900],[90,2990,3800]]},
+ {brand:"YSL",name:"Libre",slug:"ysl-libre",fam:"Квіткові",gender:"Жіночі",tag:"Новинка",img:BASE+"ysl-libre.jpg",
+  notes:["Лаванда","Флердоранж","Мускус"],
+  desc:"Сміливий квітковий аромат свободи: французька лаванда, марокканський флердоранж і теплий мускус.",
+  vols:[[30,2790,3400],[50,3490,4300],[90,4490,5500]]},
+ {brand:"Giorgio Armani",name:"Sun di Gioia",slug:"armani-sun-di-gioia",fam:"Цитрусові",gender:"Жіночі",tag:"",img:BASE+"armani-sun-di-gioia.jpg",
+  notes:["Бергамот","Жасмин","Кокос"],
+  desc:"Сонячний аромат середземномор'я: іскристий бергамот, жасмин і м'який кокосовий акорд.",
+  vols:[[30,2390,2900],[50,2990,3700],[100,3890,4800]]},
+ {brand:"Dior",name:"Sauvage",slug:"dior-sauvage",fam:"Деревні",gender:"Чоловічі",tag:"Хіт",img:BASE+"dior-sauvage.jpg",
+  notes:["Бергамот","Перець","Амброксан"],
+  desc:"Свіжий і брутальний: іскристий бергамот, гострий перець і мінеральний амброксан. Аромат-характер.",
+  vols:[[60,2890,3600],[100,3490,4300],[200,4990,6200]]},
+ {brand:"Givenchy",name:"Gentleman",slug:"givenchy-gentleman",fam:"Деревні",gender:"Чоловічі",tag:"",img:BASE+"givenchy-gentleman.jpg",
+  notes:["Груша","Ірис","Пачулі"],
+  desc:"Сучасний джентльмен: соковита груша, пудровий ірис і глибокі пачулі у строгому чорному флаконі.",
+  vols:[[50,2790,3500],[100,3590,4400]]},
+ {brand:"Valentino",name:"Uomo",slug:"valentino-uomo",fam:"Східні",gender:"Чоловічі",tag:"",img:BASE+"valentino-uomo.jpg",
+  notes:["Шоколад","Шавлія","Шкіра"],
+  desc:"Чуттєвий аромат у гранованому флаконі: гірко-солодкий шоколад, мускатна шавлія та шкіра.",
+  vols:[[50,3190,3900],[100,3990,4900]]},
+ {brand:"Emporio Armani",name:"Stronger With You",slug:"armani-stronger-with-you",fam:"Гурманські",gender:"Чоловічі",tag:"Хіт",img:BASE+"armani-stronger-with-you.jpg",
+  notes:["Кардамон","Каштан","Ваніль"],
+  desc:"Теплий гурман: пряний кардамон, солодкий глазурований каштан і ваніль. Магнетичний шлейф.",
+  vols:[[50,2890,3600],[100,3690,4600]]},
+ {brand:"Jean Paul Gaultier",name:"Le Male",slug:"jpg-le-male",fam:"Східні",gender:"Чоловічі",tag:"",img:BASE+"jpg-le-male.jpg",
+  notes:["М'ята","Лаванда","Ваніль"],
+  desc:"Культовий аромат у флаконі-торсі: свіжа м'ята, лаванда та солодка ваніль. Класика чоловічої парфумерії.",
+  vols:[[75,2690,3300],[125,3490,4300]]},
+ {brand:"YSL",name:"Y Eau de Parfum",slug:"ysl-y",fam:"Деревні",gender:"Чоловічі",tag:"",img:BASE+"ysl-y.jpg",
+  notes:["Імбир","Шавлія","Кедр"],
+  desc:"Аромат сили та амбіцій: свіжий імбир, ароматична шавлія та благородний кедр у чорному флаконі.",
+  vols:[[60,3090,3800],[100,3990,4900]]},
+ {brand:"Giorgio Armani",name:"Acqua di Giò Profumo",slug:"acqua-di-gio-profumo",fam:"Цитрусові",gender:"Чоловічі",tag:"Хіт",img:BASE+"acqua-di-gio-profumo.jpg",
+  notes:["Морська нота","Бергамот","Пачулі"],
+  desc:"Глибша інтерпретація класики: солоний морський бриз, бергамот і мінеральні пачулі.",
+  vols:[[40,3290,4000],[75,3990,4900],[125,4990,6200]]},
+ {brand:"Hermès",name:"Terre d'Hermès",slug:"terre-dhermes",fam:"Деревні",gender:"Чоловічі",tag:"",img:BASE+"terre-dhermes.jpg",
+  notes:["Грейпфрут","Перець","Ветивер"],
+  desc:"Мінерально-деревний аромат землі: цитрусовий старт, гострий перець і димний ветивер.",
+  vols:[[50,3490,4300],[100,4490,5500]]},
+ {brand:"Bvlgari",name:"Man Wood Neroli",slug:"bvlgari-man",fam:"Деревні",gender:"Чоловічі",tag:"",img:BASE+"bvlgari-man.jpg",
+  notes:["Неролі","Кедр","Мускус"],
+  desc:"Витончений деревний аромат: яскравий неролі, благородний кедр і чистий мускус.",
+  vols:[[60,2990,3700],[100,3790,4700]]},
+ {brand:"Calvin Klein",name:"CK One",slug:"ck-one",fam:"Цитрусові",gender:"Унісекс",tag:"",img:BASE+"ck-one.jpg",
+  notes:["Лимон","Зелений чай","Мускус"],
+  desc:"Легендарний унісекс-аромат: іскристий лимон, зелений чай і прозорий мускус. Свіжість для всіх.",
+  vols:[[100,1690,2100],[200,2390,3000]]},
+ {brand:"Zara",name:"Seoul 532-8",slug:"zara-seoul",fam:"Деревні",gender:"Унісекс",tag:"−20%",img:BASE+"zara-seoul.jpg",
+  notes:["Бергамот","Кардамон","Кедр"],
+  desc:"Доступний унісекс-аромат із характером: бергамот, пряний кардамон і теплий кедр.",
+  vols:[[100,890,1200],[200,1390,1800]]},
+];
+
+/* ---------- CATALOG: пошук / фільтри / сортування ----------
+   ⚠ WordPress: масив PRODUCTS — це «шов» інтеграції. У темі його замінює
+   WP-цикл / WooCommerce (get_posts / WP_Query) або REST-ендпоінт.
+   Розмітку картки нижче легко винести у content-perfume.php / шаблон товару. */
+PRODUCTS.forEach((p,i)=>{p._i=i;p.price=Math.min(...p.vols.map(v=>v[1]))});
+const slugIndex={};PRODUCTS.forEach(p=>slugIndex[p.slug]=p._i); // slug → індекс (для посилань)
+const grid=document.getElementById('catGrid');
+const PER_PAGE=12;
+let page=1;
+const state={gender:"",vols:new Set()};
+
+/* динамічні чипи об'ємів */
+const allVols=[...new Set(PRODUCTS.flatMap(p=>p.vols.map(v=>v[0])))].sort((a,b)=>a-b);
+document.getElementById('volChips').innerHTML=allVols.map(v=>
+  `<button type="button" class="chip-f" data-vol="${v}" onclick="toggleVol(${v},this)">${v} мл</button>`).join("");
+
+function update(){page=1;render()} // будь-яка зміна фільтра → на першу сторінку
+function pickGender(btn){
+  document.querySelectorAll('#genderSeg .seg-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');state.gender=btn.dataset.gender;update();
+}
+function toggleVol(v,btn){
+  btn.classList.toggle('active');
+  state.vols.has(v)?state.vols.delete(v):state.vols.add(v);update();
+}
+function resetFilters(){
+  state.gender="";state.vols.clear();
+  ['search','pmin','pmax'].forEach(id=>document.getElementById(id).value="");
+  document.getElementById('sort').value="pop";
+  document.querySelectorAll('#genderSeg .seg-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
+  document.querySelectorAll('.chip-f').forEach(c=>c.classList.remove('active'));
+  update();
+}
+function plural(n){const m=n%10,h=n%100;return(m===1&&h!==11)?"аромат":(m>=2&&m<=4&&(h<10||h>=20))?"аромати":"ароматів"}
+
+function filtered(){
+  const q=document.getElementById('search').value.trim().toLowerCase();
+  const sort=document.getElementById('sort').value;
+  const pmin=+document.getElementById('pmin').value||0;
+  const pmax=+document.getElementById('pmax').value||Infinity;
+  let list=PRODUCTS.filter(p=>{
+    if(state.gender&&p.gender!==state.gender)return false;
+    if(state.vols.size&&!p.vols.some(v=>state.vols.has(v[0])))return false;
+    if(p.price<pmin||p.price>pmax)return false;
+    if(q){const hay=(p.brand+" "+p.name+" "+p.fam+" "+p.notes.join(" ")).toLowerCase();if(!hay.includes(q))return false;}
+    return true;
+  });
+  return list.sort((a,b)=>sort==="cheap"?a.price-b.price:sort==="exp"?b.price-a.price:
+    sort==="az"?a.name.localeCompare(b.name,"uk"):a._i-b._i);
+}
+
+function render(){
+  const list=filtered();
+  const total=list.length;
+  const pages=Math.max(1,Math.ceil(total/PER_PAGE));
+  if(page>pages)page=pages;
+  const slice=list.slice((page-1)*PER_PAGE,page*PER_PAGE);
+
+  document.getElementById('count').innerHTML=total?`Знайдено <b>${total}</b> ${plural(total)}`:'';
+  document.getElementById('emptyState').hidden=total>0;
+
+  grid.innerHTML=slice.map((p,k)=>`
+    <article class="pcard" style="animation-delay:${k*45}ms" onclick="openModal(${p._i})">
+      ${p.tag?`<span class="tag">${p.tag}</span>`:""}
+      <div class="thumb"><img src="${p.img}" alt="${p.brand} ${p.name}" loading="lazy" /></div>
+      <div class="body">
+        <div class="brand">${p.brand}</div>
+        <h3>${p.name}</h3>
+        <div class="notes">${p.notes.join(" · ")}</div>
+        <div class="foot">
+          <div class="price"><span class="from">від</span><span class="now">${p.price.toLocaleString("uk")} ₴</span></div>
+          <span class="open-ic">→</span>
+        </div>
+      </div>
+    </article>`).join("");
+  renderPagination(pages);
+}
+function renderPagination(pages){
+  const el=document.getElementById('pagination');
+  if(pages<=1){el.innerHTML='';return;}
+  let h=`<button class="pg-btn" ${page===1?'disabled':''} onclick="goPage(${page-1})" aria-label="Попередня">‹</button>`;
+  for(let i=1;i<=pages;i++) h+=`<button class="pg-btn ${i===page?'active':''}" onclick="goPage(${i})">${i}</button>`;
+  h+=`<button class="pg-btn" ${page===pages?'disabled':''} onclick="goPage(${page+1})" aria-label="Наступна">›</button>`;
+  el.innerHTML=h;
+}
+function goPage(p){page=p;render();document.getElementById('catalog').scrollIntoView({behavior:'smooth',block:'start'});}
+
+/* fill order select */
+const os=document.getElementById('orderSelect');
+PRODUCTS.forEach(p=>{const o=document.createElement('option');o.textContent=`${p.brand} — ${p.name}`;os.appendChild(o)});
+
+render();
+
+/* ---------- MODAL + DEEP-LINK ---------- */
+let cur=null,curVol=0,curSlug=null;
+function openModal(i){
+  cur=PRODUCTS[i];curVol=0;curSlug=cur.slug;
+  document.getElementById('mBrand').textContent=cur.brand;
+  document.getElementById('mName').textContent=cur.name;
+  document.getElementById('mDesc').textContent=cur.desc;
+  document.getElementById('mNotes').innerHTML=
+    `<span class="m-pill">${cur.gender}</span><span class="m-pill">${cur.fam}</span>`
+    +cur.notes.map(n=>`<span class="m-pill">${n}</span>`).join("");
+  // галерея: фото товару + лайфстайл-кадри
+  const imgs=[cur.img,...LIFE];
+  const main=document.getElementById('mMainImg');main.src=imgs[0];main.alt=cur.brand+" "+cur.name;
+  document.getElementById('mThumbs').innerHTML=imgs.map((src,k)=>
+    `<button type="button" class="m-thumb ${k===0?'active':''}" onclick="setPhoto('${src}',this)">
+       <img src="${src}" alt="" loading="lazy" /></button>`).join("");
+  renderVols();
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  // оновити адресу: ...#product/<slug>
+  const target='#product/'+cur.slug;
+  if(location.hash!==target) history.pushState({slug:cur.slug},'',target);
+}
+function openBySlug(slug){ if(slugIndex[slug]!=null) openModal(slugIndex[slug]); }
+function setPhoto(src,el){
+  document.getElementById('mMainImg').src=src;
+  document.querySelectorAll('.m-thumb').forEach(t=>t.classList.remove('active'));el.classList.add('active');
+}
+function renderVols(){
+  document.getElementById('mVols').innerHTML=cur.vols.map((v,k)=>
+    `<div class="m-vol ${k===curVol?'active':''}" onclick="pickVol(${k})">
+       <div class="ml">${v[0]} мл</div><div class="pr">${v[1].toLocaleString("uk")} ₴</div></div>`).join("");
+  const v=cur.vols[curVol];
+  document.getElementById('mNow').textContent=v[1].toLocaleString("uk")+" ₴";
+  document.getElementById('mOld').textContent=v[2].toLocaleString("uk")+" ₴";
+}
+function pickVol(k){curVol=k;renderVols()}
+function closeModal(){
+  document.getElementById('overlay').classList.remove('open');document.body.style.overflow='';curSlug=null;
+  if(location.hash.indexOf('#product/')===0) history.pushState('',document.title,location.pathname+location.search);
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+/* deep-link: відкрити товар за адресою #product/<slug> та реагувати на навігацію */
+function syncFromHash(){
+  const m=location.hash.match(/^#product\/(.+)$/);
+  if(m){const slug=decodeURIComponent(m[1]); if(slugIndex[slug]!=null && curSlug!==slug) openModal(slugIndex[slug]);}
+  else if(curSlug){ // адресу очистили (Назад) — закрити попап
+    document.getElementById('overlay').classList.remove('open');document.body.style.overflow='';curSlug=null;
+  }
+}
+window.addEventListener('popstate',syncFromHash);
+if(location.hash.indexOf('#product/')===0) syncFromHash(); // пряме відкриття за посиланням
+
+function orderDone(form){
+  const btn=form.querySelector('button[type=submit]');
+  btn.textContent='Дякуємо! Ми передзвонимо ✓';btn.disabled=true;btn.style.opacity=.85;
+  setTimeout(()=>{if(form.closest('#modal'))closeModal()},1600);
+}
+
+/* ---------- SLIDER ---------- */
+const slides=[...document.querySelectorAll('.slide')];
+const dotsBox=document.getElementById('dots');let idx=0,timer;
+slides.forEach((_,i)=>{const b=document.createElement('button');if(i===0)b.classList.add('active');
+  b.onclick=()=>go(i);dotsBox.appendChild(b)});
+const dots=[...dotsBox.children];
+function go(n){slides[idx].classList.remove('active');dots[idx].classList.remove('active');
+  idx=(n+slides.length)%slides.length;slides[idx].classList.add('active');dots[idx].classList.add('active');reset()}
+function move(d){go(idx+d)}
+function reset(){clearInterval(timer);timer=setInterval(()=>go(idx+1),6000)}
+reset();
+
+/* ---------- MISC ---------- */
+function toggleMenu(){
+  const open=document.getElementById('mm').classList.toggle('open');
+  document.getElementById('burger').classList.toggle('active',open);
+  document.body.style.overflow=open?'hidden':'';
+}
+function closeMM(){
+  document.getElementById('mm').classList.remove('open');
+  document.getElementById('burger').classList.remove('active');
+  document.body.style.overflow='';
+}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4*70)+'ms';io.observe(el)});
+
+/* count-up у блоці переваг */
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;cio.unobserve(e.target);
+  const el=e.target,to=+el.dataset.to,t0=performance.now(),dur=1400;
+  (function tick(now){const p=Math.min((now-t0)/dur,1);const v=Math.floor((1-Math.pow(1-p,3))*to);
+    el.textContent=v.toLocaleString("uk");if(p<1)requestAnimationFrame(tick)})(t0);
+}),{threshold:.6});
+document.querySelectorAll('.count').forEach(el=>cio.observe(el));
+</script>
+</body>
+</html>
